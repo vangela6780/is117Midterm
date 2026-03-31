@@ -1,7 +1,7 @@
 export function CostShift() {
   return (
-    <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-      <div className="artifact-card p-6">
+    <div className="grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
+      <div className="artifact-card p-5 sm:p-6">
         <p className="display-type text-sm uppercase tracking-[0.22em] text-clay">The Shift / The Cost</p>
         <p className="impact-number mt-4 text-teal">2,000</p>
         <p className="display-type mt-2 text-2xl uppercase leading-tight text-ash md:text-3xl">gallons of water</p>
@@ -10,17 +10,17 @@ export function CostShift() {
         </p>
       </div>
       <figure
-        className="grid gap-4 md:grid-cols-3"
+        className="grid gap-4 lg:grid-cols-3"
         role="img"
         aria-label="Bar chart: consumer impact has the highest water footprint, followed by dyeing and finishing, then cotton growth"
       >
-        <div className="border-2 border-ash bg-background p-5 md:col-span-2" aria-hidden="true">
+        <div className="border-2 border-ash bg-background p-5 lg:col-span-2" aria-hidden="true">
           <div className="flex min-h-[140px] items-end gap-3">
             <div className="w-1/3 bg-rust" style={{ height: "28%" }} />
             <div className="w-1/3 bg-ochre" style={{ height: "56%" }} />
             <div className="w-1/3 bg-teal" style={{ height: "100%" }} />
           </div>
-          <div className="mt-4 flex justify-between text-xs font-semibold uppercase tracking-[0.14em] text-ash/70">
+          <div className="mt-4 grid gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-ash/70 sm:grid-cols-3 sm:gap-3 sm:text-center">
             <span>Cotton growth</span>
             <span>Dyeing + finishing</span>
             <span>Consumer impact</span>

@@ -2,7 +2,7 @@ import { workshopSteps } from "@/data/exhibits";
 
 export function WorkshopAction() {
   return (
-    <div className="grid gap-6 lg:grid-cols-[1fr_0.8fr]">
+    <div className="grid gap-6 xl:grid-cols-[1fr_0.8fr]">
       <div className="grid gap-4">
         {workshopSteps.map((step, index) => (
           <div key={step} className="border-2 border-ash bg-background p-5">
@@ -11,9 +11,9 @@ export function WorkshopAction() {
           </div>
         ))}
       </div>
-      <aside className="artifact-card p-6">
+      <aside className="artifact-card p-5 sm:p-6">
         <p className="display-type text-sm uppercase tracking-[0.22em] text-clay">The Workshop / Visitor Action</p>
-        <h3 className="museum-title mt-4 text-[2.14rem] leading-[0.94] text-ash">Start with one stitch.</h3>
+        <h3 className="museum-title mt-4 text-[clamp(1.95rem,5vw,2.14rem)] leading-[0.94] text-ash">Start with one stitch.</h3>
         <p className="mt-4 text-base leading-7 text-ash/80">
           Repair, patchwork, reconstruction, and visible mending convert reflection into practice. In this room, each
           intervention is treated as a small act of stewardship.

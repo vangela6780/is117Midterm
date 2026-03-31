@@ -3,9 +3,9 @@ import { artifacts } from "@/data/exhibits";
 export function ArtifactGallery() {
   return (
     <div className="space-y-7">
-      <div className="grid gap-6 lg:grid-cols-[1fr_0.85fr]">
+      <div className="grid gap-6 xl:grid-cols-[1fr_0.85fr]">
         <div
-          className="gallery-panel curated-image-panel min-h-[280px] border-2 border-ash p-6 text-mist"
+          className="gallery-panel curated-image-panel min-h-[min(56svh,420px)] sm:min-h-[320px] xl:min-h-[420px] border-2 border-ash p-4 sm:p-6 text-mist"
           role="img"
           aria-label="Material study image showing layered textile surfaces used to frame the artifact gallery"
           style={{
@@ -19,10 +19,10 @@ export function ArtifactGallery() {
           <div className="relative z-[2] flex h-full flex-col justify-between">
             <div>
               <p className="museum-kicker text-mist/80">The Gallery / The Art</p>
-              <h3 className="museum-title mt-3 text-[2.38rem] leading-[0.92] text-mist">Material as record</h3>
+              <h3 className="museum-title mt-3 text-[clamp(2rem,6vw,2.38rem)] leading-[0.92] text-mist">Material as record</h3>
             </div>
             <div>
-              <p className="max-w-lg text-base leading-7 text-mist/85">
+              <p className="max-w-lg text-[0.98rem] leading-7 text-mist/85 sm:text-base">
                 This image operates as a material study: surface, weave, wear, and repair are read here as historical marks,
                 preparing the viewer to encounter each object as evidence rather than trend.
               </p>
@@ -33,7 +33,7 @@ export function ArtifactGallery() {
             </div>
           </div>
         </div>
-        <div className="artifact-card flex flex-col justify-between p-6">
+        <div className="artifact-card flex flex-col justify-between p-5 sm:p-6">
           <div>
             <p className="display-type text-sm uppercase tracking-[0.22em] text-clay">Curatorial benchmark</p>
             <p className="mt-3 text-base leading-7 text-ash/80">
@@ -52,11 +52,11 @@ export function ArtifactGallery() {
           </a>
         </div>
       </div>
-      <div className="grid gap-5 md:grid-cols-3">
+      <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
         {artifacts.map((artifact) => (
           <article key={artifact.title} className="artifact-card p-5">
             <p className="display-type text-xs uppercase tracking-[0.2em] text-clay">Cat. {artifact.id}</p>
-            <p className="museum-title mt-1 text-[1.72rem] leading-tight text-ash">{artifact.title}</p>
+            <p className="museum-title mt-1 text-[1.55rem] leading-tight text-ash sm:text-[1.72rem]">{artifact.title}</p>
             <div className="mt-4 space-y-3 text-sm leading-7 text-ash/78">
               <p>
                 <span className="font-semibold uppercase tracking-[0.14em] text-clay">Provenance:</span> {artifact.provenance}
