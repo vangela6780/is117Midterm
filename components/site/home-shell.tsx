@@ -45,22 +45,45 @@ export function HomeShell() {
             <HeroEntry />
           </RevealOnScroll>
           <RevealOnScroll>
-            <SectionFrame id="cost" eyebrow="Room Two" title="Resource Cost">
+            <SectionFrame
+              id="cost"
+              eyebrow="Room Two"
+              title="Resource Cost"
+              guidance="Understand the hidden resource burden behind one everyday garment."
+              nextRoom={{ id: "gallery", label: "Gallery" }}
+            >
               <CostShift />
             </SectionFrame>
           </RevealOnScroll>
           <RevealOnScroll>
-            <SectionFrame id="gallery" eyebrow="Room Three" title="Artifact Gallery">
+            <SectionFrame
+              id="gallery"
+              eyebrow="Room Three"
+              title="Artifact Gallery"
+              guidance="Study each object as evidence, then open a context plate for deeper interpretation."
+              nextRoom={{ id: "impact", label: "Community" }}
+            >
               <ArtifactGallery />
             </SectionFrame>
           </RevealOnScroll>
           <RevealOnScroll>
-            <SectionFrame id="impact" eyebrow="Room Four" title="Community Proof">
+            <SectionFrame
+              id="impact"
+              eyebrow="Room Four"
+              title="Community Proof"
+              guidance="Connect personal choices with measurable collective outcomes."
+              nextRoom={{ id: "workshop", label: "Workshop" }}
+            >
               <CommunityImpact />
             </SectionFrame>
           </RevealOnScroll>
           <RevealOnScroll>
-            <SectionFrame id="workshop" eyebrow="Room Five" title="Workshop">
+            <SectionFrame
+              id="workshop"
+              eyebrow="Room Five"
+              title="Workshop"
+              guidance="Leave with one practical repair action you can execute this week."
+            >
               <WorkshopAction />
             </SectionFrame>
           </RevealOnScroll>
