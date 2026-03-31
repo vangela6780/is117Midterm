@@ -54,7 +54,8 @@ export function ArtifactGallery() {
       </div>
       <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
         {artifacts.map((artifact) => (
-          <article key={artifact.title} className="artifact-card p-5">
+          <article key={artifact.title} className="artifact-card relative overflow-hidden p-5">
+            <div aria-hidden className="absolute right-0 top-0 h-14 w-14 bg-[linear-gradient(135deg,rgba(181,65,46,0.18),transparent)]" />
             <p className="display-type text-xs uppercase tracking-[0.2em] text-clay">Cat. {artifact.id}</p>
             <p className="museum-title mt-1 text-[1.55rem] leading-tight text-ash sm:text-[1.72rem]">{artifact.title}</p>
             <div className="mt-4 space-y-3 text-sm leading-7 text-ash/78">

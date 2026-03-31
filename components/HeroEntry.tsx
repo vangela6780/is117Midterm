@@ -6,17 +6,17 @@ const stats = [
 
 export function HeroEntry() {
   return (
-    <section className="grid gap-6 border-2 border-ash bg-mist p-4 shadow-museum sm:p-5 md:p-6 xl:grid-cols-[1.08fr_0.92fr] xl:p-8">
+    <section className="grid gap-6 border border-mist/14 bg-[linear-gradient(180deg,rgba(24,21,23,0.96),rgba(16,14,15,0.98))] p-4 shadow-museum sm:p-5 md:p-6 xl:grid-cols-[1.08fr_0.92fr] xl:p-8">
       <div className="space-y-5 md:space-y-6">
         <span className="section-label">The Entry / The Shock</span>
         <div className="space-y-3 md:space-y-4">
-          <p className="museum-kicker text-clay">
+          <p className="museum-kicker text-mist/76">
             Thread & Trace: The Upcycling Revolution
           </p>
-          <h1 className="museum-title text-[clamp(2.15rem,8vw,4.35rem)] leading-[0.88] text-ash">
+          <h1 className="museum-title text-[clamp(2.15rem,8vw,4.35rem)] leading-[0.88] text-mist">
             Waste becomes visible before it becomes valuable.
           </h1>
-          <p className="museum-copy max-w-2xl text-[1.02rem] leading-7 md:text-lg md:leading-8">
+          <p className="max-w-2xl text-[1.02rem] leading-7 text-mist/76 md:text-lg md:leading-8">
             This opening gallery positions Atacama not as spectacle, but as evidence. The exhibition asks viewers to move
             from passive consumption toward material literacy: to see discarded clothing as design potential, labor history,
             and environmental record.
@@ -24,9 +24,9 @@ export function HeroEntry() {
         </div>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {stats.map((stat) => (
-            <div key={stat.label} className="border-2 border-ash bg-background p-4">
-              <p className="display-type text-[1.7rem] font-semibold uppercase text-rust sm:text-[1.9rem]">{stat.value}</p>
-              <p className="mt-2 text-sm uppercase tracking-[0.14em] text-ash/80">{stat.label}</p>
+            <div key={stat.label} className="fashion-card p-4">
+              <p className="display-type text-[1.7rem] font-semibold uppercase text-ochre sm:text-[1.9rem]">{stat.value}</p>
+              <p className="mt-2 text-sm uppercase tracking-[0.14em] text-mist/76">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -67,11 +67,11 @@ export function HeroEntry() {
             target="_blank"
             rel="noreferrer"
             aria-label="View Atacama NPR article (opens in new tab)"
-            className="border-2 border-ash bg-ochre px-4 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-ash transition hover:-translate-y-0.5 hover:bg-sand sm:py-5"
+            className="border border-ochre/80 bg-ochre px-4 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-[#171212] transition hover:-translate-y-0.5 hover:bg-sand sm:py-5"
           >
             View Atacama reference
           </a>
-          <div className="border-2 border-ash bg-ash px-4 py-4 text-sm uppercase tracking-[0.14em] leading-6 text-mist sm:py-5">
+          <div className="border border-mist/14 bg-white/5 px-4 py-4 text-sm uppercase tracking-[0.14em] leading-6 text-mist/84 sm:py-5">
             Curatorial statement: this exhibition treats disposal sites as archives of production, value, and neglect.
           </div>
         </div>

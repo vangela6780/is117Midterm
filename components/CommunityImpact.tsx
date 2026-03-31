@@ -30,7 +30,7 @@ export function CommunityImpact() {
           type="button"
           onClick={() => setPledges((current) => current + 1)}
           aria-label="Add your pledge to the community count"
-          className="mt-6 w-full border-2 border-ash bg-teal px-5 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-mist transition hover:bg-ash sm:w-auto"
+          className="mt-6 w-full border border-teal bg-teal px-5 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-mist transition hover:bg-ash sm:w-auto"
         >
           Add your pledge
         </button>
@@ -38,7 +38,7 @@ export function CommunityImpact() {
       </div>
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-1">
         {communityStatements.map((statement, index) => (
-          <blockquote key={statement} className="border-2 border-ash bg-background p-5 text-base leading-7 text-ash/82">
+          <blockquote key={statement} className="artifact-card p-5 text-base leading-7 text-ash/82">
             <p className="display-type text-sm uppercase tracking-[0.22em] text-clay">Statement {index + 1}</p>
             <p className="mt-3">{statement}</p>
           </blockquote>

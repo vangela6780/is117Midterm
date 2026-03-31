@@ -16,9 +16,9 @@ export function CostShift() {
       >
         <div className="border-2 border-ash bg-background p-5 lg:col-span-2" aria-hidden="true">
           <div className="flex min-h-[140px] items-end gap-3">
-            <div className="w-1/3 bg-rust" style={{ height: "28%" }} />
-            <div className="w-1/3 bg-ochre" style={{ height: "56%" }} />
-            <div className="w-1/3 bg-teal" style={{ height: "100%" }} />
+            <div className="w-1/3 bg-rust shadow-[0_0_18px_rgba(181,65,46,0.18)]" style={{ height: "28%" }} />
+            <div className="w-1/3 bg-ochre shadow-[0_0_18px_rgba(198,139,46,0.18)]" style={{ height: "56%" }} />
+            <div className="w-1/3 bg-teal shadow-[0_0_18px_rgba(47,127,120,0.18)]" style={{ height: "100%" }} />
           </div>
           <div className="mt-4 grid gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-ash/70 sm:grid-cols-3 sm:gap-3 sm:text-center">
             <span>Cotton growth</span>
@@ -26,7 +26,7 @@ export function CostShift() {
             <span>Consumer impact</span>
           </div>
         </div>
-        <div className="border-2 border-ash bg-mist p-5 text-sm leading-7 text-ash/84">
+        <div className="artifact-card p-5 text-sm leading-7 text-ash/84">
           <p className="display-type text-xl uppercase text-ash">Interpretation</p>
           <p className="mt-3">
             Bauhaus logic keeps the data legible: simple geometry, direct labeling. The eye goes straight from bar height to cost — no decorative clutter between viewer and consequence.

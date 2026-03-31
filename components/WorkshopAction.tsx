@@ -5,7 +5,7 @@ export function WorkshopAction() {
     <div className="grid gap-6 xl:grid-cols-[1fr_0.8fr]">
       <div className="grid gap-4">
         {workshopSteps.map((step, index) => (
-          <div key={step} className="border-2 border-ash bg-background p-5">
+          <div key={step} className="artifact-card p-5">
             <p className="display-type text-sm uppercase tracking-[0.22em] text-clay">Workshop step {index + 1}</p>
             <p className="mt-3 text-base leading-7 text-ash/84">{step}</p>
           </div>
@@ -18,7 +18,7 @@ export function WorkshopAction() {
           Repair, patchwork, reconstruction, and visible mending convert reflection into practice. In this room, each
           intervention is treated as a small act of stewardship.
         </p>
-        <div className="mt-6 border-2 border-ash bg-ash p-4 text-sm uppercase tracking-[0.14em] leading-6 text-mist">
+        <div className="mt-6 border border-mist/12 bg-[linear-gradient(180deg,rgba(27,23,24,0.94),rgba(18,16,17,0.98))] p-4 text-sm uppercase tracking-[0.14em] leading-6 text-mist/88">
           Visitor prompt: bring one worn garment and document one repair decision before replacement.
         </div>
       </aside>
