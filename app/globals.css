@@ -243,3 +243,28 @@ button:focus-visible {
   font-size: clamp(2.5rem, 7vw, 5rem);
   line-height: 0.9;
 }
+
+.entry-scroll-indicator {
+  animation: pulseDown 1.8s ease-in-out infinite;
+}
+
+@keyframes pulseDown {
+  0% {
+    transform: translateY(0);
+    box-shadow: 0 0 0 rgba(243, 237, 226, 0);
+  }
+  50% {
+    transform: translateY(3px);
+    box-shadow: 0 8px 0 rgba(243, 237, 226, 0.12);
+  }
+  100% {
+    transform: translateY(0);
+    box-shadow: 0 0 0 rgba(243, 237, 226, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entry-scroll-indicator {
+    animation: none;
+  }
+}

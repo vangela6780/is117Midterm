@@ -1,52 +1,104 @@
-const stats = [
-  { label: "Discarded garments entering Atacama yearly", value: "59,000t" },
-  { label: "Garments routed through Iquique free zone", value: "Millions" },
-  { label: "Curatorial premise", value: "Waste to material" }
+import { AnimatedMetric } from "@/components/AnimatedMetric";
+
+const narrativeSteps = [
+  "Observe the scale of disposal as a physical landscape.",
+  "Interpret garments as evidence of labor, trade, and neglect.",
+  "Carry one practical repair action into the next room."
 ];
 
 export function HeroEntry() {
   return (
-    <section id="entry" className="grid gap-6 border-2 border-ash bg-mist p-4 shadow-museum sm:p-5 md:p-6 xl:grid-cols-[1.08fr_0.92fr] xl:p-8">
-      <div className="space-y-5 md:space-y-6">
-        <span className="section-label">The Entry / The Shock</span>
-        <div className="space-y-3 md:space-y-4">
-          <p className="museum-kicker text-clay">
-            Thread & Trace: The Upcycling Revolution
-          </p>
-          <h1 className="museum-title text-[clamp(2.15rem,8vw,4.35rem)] leading-[0.88] text-ash">
-            Waste becomes visible before it becomes valuable.
-          </h1>
-          <p className="museum-copy max-w-2xl text-[1.02rem] leading-7 md:text-lg md:leading-8">
-            This opening gallery positions Atacama not as spectacle, but as evidence. The exhibition asks viewers to move
-            from passive consumption toward material literacy: to see discarded clothing as design potential, labor history,
-            and environmental record.
-          </p>
-        </div>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {stats.map((stat) => (
-            <div key={stat.label} className="border-2 border-ash bg-background p-4">
-              <p className="display-type text-[1.7rem] font-semibold uppercase text-rust sm:text-[1.9rem]">{stat.value}</p>
-              <p className="mt-2 text-sm uppercase tracking-[0.14em] text-ash/80">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-        <div className="grid gap-4 border-2 border-ash bg-panel p-4 sm:grid-cols-[1fr_auto] sm:items-end">
-          <div>
-            <p className="museum-kicker text-clay">Visitor orientation wall</p>
-            <p className="mt-2 text-sm leading-7 text-ash/82 sm:text-base">
-              Route recommendation: begin in Entry, continue through Cost and Gallery, pause at Community statements,
-              then complete one action in the Workshop before leaving the exhibition.
+    <section id="entry" className="space-y-6 border-2 border-ash bg-mist p-4 shadow-museum sm:p-5 md:p-6 xl:p-8">
+      <div
+        className="entry-hero-panel curated-image-panel relative min-h-[82svh] border-2 border-ash p-4 text-mist sm:p-6"
+        role="img"
+        aria-label="Panoramic Atacama contextual hero image used as the exhibition entrance"
+        style={{
+          backgroundImage:
+            "linear-gradient(180deg, rgba(10, 10, 10, 0.2) 0%, rgba(10, 10, 10, 0.7) 100%), url('https://images.pexels.com/photos/1001435/pexels-photo-1001435.jpeg?auto=compress&cs=tinysrgb&w=2000')",
+          backgroundSize: "cover",
+          backgroundPosition: "center 54%",
+          backgroundAttachment: "fixed"
+        }}
+      >
+        <div className="relative z-[2] flex h-full flex-col justify-between">
+          <div className="flex items-start justify-between gap-4">
+            <span className="section-label border-mist/80 bg-mist/15 text-mist">The Entry / The Shock</span>
+            <p aria-hidden="true" className="text-[0.72rem] uppercase tracking-[0.18em] text-mist/65 sm:text-[0.8rem]">
+              Atacama contextual plate
             </p>
           </div>
-          <a
-            href="#cost"
-            className="inline-flex items-center justify-center border-2 border-ash bg-ash px-4 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-mist transition hover:-translate-y-0.5 hover:bg-clay"
-          >
-            Start the route
-          </a>
+          <div className="space-y-4">
+            <p className="museum-kicker text-mist/86">Thread & Trace: The Upcycling Revolution</p>
+            <h1 className="museum-title max-w-4xl text-[clamp(2.1rem,7vw,4.6rem)] leading-[0.86] text-mist">
+              Waste becomes visible before it becomes valuable.
+            </h1>
+            <p className="max-w-3xl text-[1rem] leading-7 text-mist/86 sm:text-[1.06rem] sm:leading-8">
+              Welcome to the exhibition. This entrance frames Atacama as evidence, not spectacle, and introduces the route
+              from extraction costs to collective repair.
+            </p>
+            <a
+              href="#entry-brief"
+              className="entry-scroll-indicator inline-flex items-center gap-2 border-2 border-mist/75 bg-mist/10 px-4 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-mist sm:text-sm"
+            >
+              Scroll to begin
+              <span aria-hidden="true">↓</span>
+            </a>
+          </div>
         </div>
       </div>
-      <div className="grid gap-4">
+
+      <div id="entry-brief" className="grid gap-6 xl:grid-cols-[1.08fr_0.92fr]">
+        <div className="space-y-5 md:space-y-6">
+          <div className="space-y-3 md:space-y-4">
+            <p className="museum-kicker text-clay">Visitor orientation wall</p>
+            <h2 className="museum-title text-[clamp(1.9rem,5vw,3rem)] leading-[0.9] text-ash">How to move through this room</h2>
+            <p className="museum-copy max-w-2xl text-[1.02rem] leading-7 md:text-lg md:leading-8">
+              This opening gallery positions Atacama not as spectacle, but as evidence. Read the shock metrics, scan the
+              context plate, then carry one question forward into Room Two: what true resource cost is hidden inside one garment?
+            </p>
+          </div>
+          <ol className="grid gap-3 sm:grid-cols-3">
+            {narrativeSteps.map((step, index) => (
+              <li key={step} className="border-2 border-ash bg-background p-4">
+                <p className="display-type text-xs uppercase tracking-[0.2em] text-clay">Step 0{index + 1}</p>
+                <p className="mt-2 text-sm leading-7 text-ash/82">{step}</p>
+              </li>
+            ))}
+          </ol>
+          <div className="grid gap-4 border-2 border-ash bg-panel p-4 sm:grid-cols-[1fr_auto] sm:items-end">
+            <div>
+              <p className="museum-kicker text-clay">Continue the guided route</p>
+              <p className="mt-2 text-sm leading-7 text-ash/82 sm:text-base">
+                Next stop: Resource Cost. You will translate abstract waste into concrete water-use impact.
+              </p>
+            </div>
+            <a
+              href="#cost"
+              className="inline-flex items-center justify-center border-2 border-ash bg-ash px-4 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-mist transition hover:-translate-y-0.5 hover:bg-clay"
+            >
+              Continue to Cost
+            </a>
+          </div>
+        </div>
+
+        <div className="grid gap-4">
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div className="border-2 border-ash bg-background p-4">
+              <p className="display-type text-[1.85rem] font-semibold uppercase text-rust sm:text-[2.15rem]">
+                <AnimatedMetric value={59000} suffix="t" />
+              </p>
+              <p className="mt-2 text-sm uppercase tracking-[0.14em] text-ash/80">Discarded garments entering Atacama yearly</p>
+            </div>
+            <div className="border-2 border-ash bg-background p-4">
+              <p className="display-type text-[1.85rem] font-semibold uppercase text-rust sm:text-[2.15rem]">
+                <AnimatedMetric value={7} suffix="M+" />
+              </p>
+              <p className="mt-2 text-sm uppercase tracking-[0.14em] text-ash/80">Garments routed through Iquique free zone</p>
+            </div>
+          </div>
+
+          <div className="grid gap-4">
         <div
           className="desert-panel curated-image-panel relative min-h-[min(62svh,440px)] sm:min-h-[380px] xl:min-h-[min(68svh,520px)] border-2 border-ash p-4 sm:p-5 text-mist"
           role="img"
@@ -88,6 +140,8 @@ export function HeroEntry() {
           </a>
           <div className="border-2 border-ash bg-ash px-4 py-4 text-sm uppercase tracking-[0.14em] leading-6 text-mist sm:py-5">
             Curatorial statement: this exhibition treats disposal sites as archives of production, value, and neglect.
+          </div>
+        </div>
           </div>
         </div>
       </div>
