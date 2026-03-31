@@ -1,0 +1,58 @@
+const stats = [
+  { label: "Desert dumping grounds", value: "39,000+" },
+  { label: "Garments imported yearly into Chile's free zone", value: "Millions" },
+  { label: "Creative prompt", value: "Reclaim instead of replace" }
+];
+
+export function HeroEntry() {
+  return (
+    <section className="grid gap-8 border-2 border-ash bg-mist p-6 shadow-museum lg:grid-cols-[1.1fr_0.9fr] lg:p-8">
+      <div className="space-y-6">
+        <span className="section-label">The Entry / The Shock</span>
+        <div className="space-y-4">
+          <p className="display-type text-sm uppercase tracking-[0.25em] text-clay">
+            Thread & Trace: The Upcycling Revolution
+          </p>
+          <h1 className="display-type text-5xl font-semibold uppercase leading-[0.9] text-ash md:text-7xl">
+            Waste becomes visible before it becomes valuable.
+          </h1>
+          <p className="max-w-2xl text-lg leading-8 text-ash/80">
+            Atacama's garment graveyard is the opening room of this digital museum. The point is not guilt.
+            The point is clarity: once waste is seen, creativity has a material to reclaim.
+          </p>
+        </div>
+        <div className="grid gap-3 md:grid-cols-3">
+          {stats.map((stat) => (
+            <div key={stat.label} className="border-2 border-ash bg-background p-4">
+              <p className="display-type text-2xl font-semibold uppercase text-rust">{stat.value}</p>
+              <p className="mt-2 text-sm uppercase tracking-[0.14em] text-ash/70">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="grid gap-4">
+        <div className="desert-panel min-h-[340px] border-2 border-ash p-5 text-mist">
+          <div className="flex h-full flex-col justify-between">
+            <p className="display-type text-2xl uppercase leading-tight">The Atacama Graveyard</p>
+            <p className="max-w-sm text-base leading-7 text-mist/85">
+              A harsh landscape of excess, rendered as a high-contrast mural panel to set the museum's emotional threshold.
+            </p>
+          </div>
+        </div>
+        <div className="grid gap-4 md:grid-cols-[1fr_1.3fr]">
+          <a
+            href="https://www.npr.org/2021/11/08/1053279833/chile-desert-fast-fashion-pollution"
+            target="_blank"
+            rel="noreferrer"
+            className="border-2 border-ash bg-ochre px-4 py-5 text-sm font-semibold uppercase tracking-[0.14em] text-ash transition hover:bg-sand"
+          >
+            View Atacama reference
+          </a>
+          <div className="border-2 border-ash bg-ash px-4 py-5 text-sm uppercase tracking-[0.14em] text-mist">
+            Curator cue: frame the problem as a material archive, not disposable clutter.
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
