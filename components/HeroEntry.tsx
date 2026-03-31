@@ -6,14 +6,14 @@ const stats = [
 
 export function HeroEntry() {
   return (
-    <section className="grid gap-7 border-2 border-ash bg-mist p-5 shadow-museum md:p-6 lg:grid-cols-[1.1fr_0.9fr] lg:p-8">
+    <section className="grid gap-7 border-2 border-ash bg-mist p-5 shadow-museum md:p-7 lg:grid-cols-[1.1fr_0.9fr] lg:p-8">
       <div className="space-y-5 md:space-y-6">
         <span className="section-label">The Entry / The Shock</span>
         <div className="space-y-3 md:space-y-4">
           <p className="display-type text-sm uppercase tracking-[0.25em] text-clay">
             Thread & Trace: The Upcycling Revolution
           </p>
-          <h1 className="display-type text-[2.35rem] font-semibold uppercase leading-[0.9] text-ash md:text-[4.2rem]">
+          <h1 className="display-type text-[2.38rem] font-semibold uppercase leading-[0.88] tracking-[-0.01em] text-ash md:text-[4.3rem]">
             Waste becomes visible before it becomes valuable.
           </h1>
           <p className="max-w-2xl text-[1.02rem] leading-7 text-ash/80 md:text-lg md:leading-8">
@@ -61,7 +61,7 @@ export function HeroEntry() {
             target="_blank"
             rel="noreferrer"
             aria-label="View Atacama NPR article (opens in new tab)"
-            className="border-2 border-ash bg-ochre px-4 py-5 text-sm font-semibold uppercase tracking-[0.14em] text-ash transition hover:bg-sand"
+            className="border-2 border-ash bg-ochre px-4 py-5 text-sm font-semibold uppercase tracking-[0.14em] text-ash transition hover:-translate-y-0.5 hover:bg-sand"
           >
             View Atacama reference
           </a>

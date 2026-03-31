@@ -4,7 +4,7 @@ export function CostShift() {
       <div className="artifact-card p-6">
         <p className="display-type text-sm uppercase tracking-[0.22em] text-clay">The Shift / The Cost</p>
         <p className="impact-number mt-4 text-teal">2,000</p>
-        <p className="display-type mt-2 text-2xl uppercase text-ash md:text-3xl">gallons of water</p>
+        <p className="display-type mt-2 text-2xl uppercase leading-tight text-ash md:text-3xl">gallons of water</p>
         <p className="mt-4 max-w-md text-base leading-7 text-ash/75">
           The average pair of denim jeans requires 2,000 gallons of water from crop to closet — more than a full year's drinking supply for one person. This room reframes fashion as resource infrastructure.
         </p>
@@ -26,7 +26,7 @@ export function CostShift() {
             <span>Consumer impact</span>
           </div>
         </div>
-        <div className="border-2 border-ash bg-mist p-5 text-sm leading-7 text-ash/80">
+        <div className="border-2 border-ash bg-mist p-5 text-sm leading-7 text-ash/84">
           <p className="display-type text-xl uppercase text-ash">Interpretation</p>
           <p className="mt-3">
             Bauhaus logic keeps the data legible: simple geometry, direct labeling. The eye goes straight from bar height to cost — no decorative clutter between viewer and consequence.
