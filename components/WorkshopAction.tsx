@@ -13,7 +13,7 @@ export function WorkshopAction() {
       </div>
       <aside className="artifact-card p-6">
         <p className="display-type text-sm uppercase tracking-[0.22em] text-clay">The Workshop / The Action</p>
-        <h3 className="display-type mt-4 text-[2.1rem] uppercase leading-[0.92] tracking-tight text-ash">Start with one stitch.</h3>
+        <h3 className="museum-title mt-4 text-[2.14rem] leading-[0.94] text-ash">Start with one stitch.</h3>
         <p className="mt-4 text-base leading-7 text-ash/80">
           Repair, patchwork, reconstruction, and visible mending turn abstract concern into a repeatable making practice. The garment becomes evidence.
         </p>

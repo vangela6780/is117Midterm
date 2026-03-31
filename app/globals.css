@@ -112,6 +112,27 @@ button:focus-visible {
   text-wrap: balance;
 }
 
+.museum-kicker {
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgba(27, 27, 25, 0.78);
+}
+
+.museum-title {
+  font-family: var(--font-display), sans-serif;
+  letter-spacing: -0.012em;
+  line-height: 0.95;
+  text-wrap: balance;
+}
+
+.museum-copy {
+  max-width: 68ch;
+  color: var(--ink-soft);
+}
+
 .section-label {
   display: inline-flex;
   align-items: center;
@@ -130,6 +151,10 @@ button:focus-visible {
   background: rgba(239, 228, 210, 0.92);
   box-shadow: 12px 12px 0 rgba(27, 27, 25, 0.12);
   transition: transform 240ms ease, box-shadow 240ms ease;
+}
+
+.artifact-card > :first-child {
+  margin-top: 0;
 }
 
 @media (hover: hover) {

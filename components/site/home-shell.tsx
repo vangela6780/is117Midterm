@@ -17,20 +17,20 @@ export function HomeShell() {
             <div aria-hidden className="absolute -bottom-10 right-6 h-24 w-24 rounded-full border border-ash/25" />
             <div className="relative grid gap-5 md:gap-6 lg:grid-cols-[1.2fr_1fr]">
               <div>
-                <p className="section-label">{siteConfig.name} Foundation</p>
-                <h1 className="display-type mt-3 max-w-4xl text-[2.1rem] uppercase leading-[0.88] tracking-[-0.01em] text-ash md:mt-4 md:text-[3.55rem]">
+                <p className="museum-kicker">{siteConfig.name} Foundation</p>
+                <h1 className="museum-title mt-3 max-w-4xl text-[2.12rem] text-ash md:mt-4 md:text-[3.65rem]">
                   Story-led digital museum route
                 </h1>
-                <p className="mt-3 max-w-3xl text-[1rem] leading-7 text-ash/80 md:mt-4 md:text-[1.08rem] md:leading-8">
+                <p className="museum-copy mt-3 text-[1rem] leading-7 md:mt-4 md:text-[1.08rem] md:leading-8">
                   {siteConfig.description}
                 </p>
               </div>
               <div className="grid gap-3" aria-label="Foundation directions">
                 {routeCards.map((card) => (
                   <article key={card.title} className="border-2 border-ash/95 bg-background/95 p-4">
-                    <p className="display-type text-xs uppercase tracking-[0.16em] text-clay">In view</p>
-                    <h2 className="display-type mt-2 text-xl uppercase leading-tight text-ash md:text-2xl">{card.title}</h2>
-                    <p className="mt-2 text-sm leading-7 text-ash/80">{card.description}</p>
+                    <p className="museum-kicker text-clay">In view</p>
+                    <h2 className="museum-title mt-2 text-[1.32rem] leading-tight text-ash md:text-[1.58rem]">{card.title}</h2>
+                    <p className="mt-2 text-sm leading-7 text-ash/84">{card.description}</p>
                   </article>
                 ))}
               </div>

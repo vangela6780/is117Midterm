@@ -16,7 +16,7 @@ export function SectionFrame({ id, eyebrow, title, children }: SectionFrameProps
             <span aria-hidden className="h-px w-24 bg-ash/70" />
           </div>
           <span className="section-label">{eyebrow}</span>
-          <h2 className="display-type text-[1.68rem] font-semibold uppercase leading-[0.92] tracking-tight text-ash md:text-[2.35rem]">
+          <h2 className="museum-title text-[1.72rem] leading-[0.95] text-ash md:text-[2.42rem]">
             {title}
           </h2>
         </div>

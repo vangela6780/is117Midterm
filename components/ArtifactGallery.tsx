@@ -7,8 +7,8 @@ export function ArtifactGallery() {
         <div className="gallery-panel min-h-[280px] border-2 border-ash p-6 text-mist">
           <div className="flex h-full flex-col justify-between">
             <div>
-              <p className="display-type text-sm uppercase tracking-[0.22em] text-mist/80">The Gallery / The Art</p>
-              <h3 className="display-type mt-3 text-[2.35rem] uppercase leading-[0.92] tracking-[-0.01em]">Clothing as history</h3>
+              <p className="museum-kicker text-mist/80">The Gallery / The Art</p>
+              <h3 className="museum-title mt-3 text-[2.38rem] leading-[0.92] text-mist">Clothing as history</h3>
             </div>
             <p className="max-w-lg text-base leading-7 text-mist/85">
               Inspired by museum provenance labels, each piece carries a visible record of origin, repair, and reuse — the object reads as cultural evidence, not trend.

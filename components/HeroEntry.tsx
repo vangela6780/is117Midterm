@@ -10,13 +10,13 @@ export function HeroEntry() {
       <div className="space-y-5 md:space-y-6">
         <span className="section-label">The Entry / The Shock</span>
         <div className="space-y-3 md:space-y-4">
-          <p className="display-type text-sm uppercase tracking-[0.25em] text-clay">
+          <p className="museum-kicker text-clay">
             Thread & Trace: The Upcycling Revolution
           </p>
-          <h1 className="display-type text-[2.38rem] font-semibold uppercase leading-[0.88] tracking-[-0.01em] text-ash md:text-[4.3rem]">
+          <h1 className="museum-title text-[2.4rem] leading-[0.88] text-ash md:text-[4.35rem]">
             Waste becomes visible before it becomes valuable.
           </h1>
-          <p className="max-w-2xl text-[1.02rem] leading-7 text-ash/80 md:text-lg md:leading-8">
+          <p className="museum-copy max-w-2xl text-[1.02rem] leading-7 md:text-lg md:leading-8">
             Atacama's garment graveyard is the opening room of this digital museum. The point is not guilt.
             The point is clarity: once waste is seen, creativity has a material to reclaim.
           </p>
@@ -43,7 +43,7 @@ export function HeroEntry() {
           />
           <div className="relative flex h-full flex-col justify-between">
             <div className="flex items-start justify-between">
-              <p className="display-type text-2xl uppercase leading-tight">The Atacama Graveyard</p>
+              <p className="museum-title text-[1.85rem] leading-tight text-mist">The Atacama Graveyard</p>
               <p aria-hidden="true" className="text-[0.75rem] uppercase tracking-[0.18em] text-mist/55">−24.5° / −68.8°</p>
             </div>
             <div>
