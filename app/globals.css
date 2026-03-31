@@ -180,6 +180,46 @@ button:focus-visible {
     linear-gradient(160deg, #1f2321 0%, #1a1d1c 100%);
 }
 
+.curated-image-panel {
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  isolation: isolate;
+}
+
+.curated-image-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(172deg, rgba(15, 14, 12, 0.28), rgba(15, 14, 12, 0.68)),
+    radial-gradient(circle at 82% 14%, rgba(198, 139, 46, 0.2), transparent 30%);
+  z-index: 0;
+}
+
+.curated-image-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.8) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: 1;
+}
+
+.image-credit {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(232, 225, 214, 0.76);
+}
+
 .impact-number {
   font-family: var(--font-display), sans-serif;
   font-size: clamp(2.5rem, 7vw, 5rem);
