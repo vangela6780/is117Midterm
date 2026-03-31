@@ -31,12 +31,28 @@ export function HeroEntry() {
         </div>
       </div>
       <div className="grid gap-4">
-        <div className="desert-panel min-h-[340px] border-2 border-ash p-5 text-mist">
-          <div className="flex h-full flex-col justify-between">
-            <p className="display-type text-2xl uppercase leading-tight">The Atacama Graveyard</p>
-            <p className="max-w-sm text-base leading-7 text-mist/85">
-              A harsh landscape of excess, rendered as a high-contrast mural panel to set the museum's emotional threshold.
-            </p>
+        <div className="desert-panel relative min-h-[340px] border-2 border-ash p-5 text-mist">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 opacity-[0.07]"
+            style={{
+              backgroundImage:
+                "linear-gradient(to right, rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.8) 1px, transparent 1px)",
+              backgroundSize: "40px 40px",
+            }}
+          />
+          <div className="relative flex h-full flex-col justify-between">
+            <div className="flex items-start justify-between">
+              <p className="display-type text-2xl uppercase leading-tight">The Atacama Graveyard</p>
+              <p className="text-[0.7rem] uppercase tracking-[0.18em] text-mist/55">−24.5° / −68.8°</p>
+            </div>
+            <div>
+              <p className="max-w-sm text-base leading-7 text-mist/85">
+                A harsh landscape of excess — 59,000 tonnes of discarded garments per year, rendered as a high-contrast
+                mural panel to set the museum's emotional threshold.
+              </p>
+              <p className="mt-3 text-[0.7rem] uppercase tracking-[0.16em] text-mist/45">Exhibit record A-001 · Active archive</p>
+            </div>
           </div>
         </div>
         <div className="grid gap-4 md:grid-cols-[1fr_1.3fr]">

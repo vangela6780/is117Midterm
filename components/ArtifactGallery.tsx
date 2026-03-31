@@ -11,7 +11,7 @@ export function ArtifactGallery() {
               <h3 className="display-type mt-3 text-4xl uppercase leading-none">Clothing as history</h3>
             </div>
             <p className="max-w-lg text-base leading-7 text-mist/85">
-              Inspired by museum provenance labels, each piece keeps a visible record of origin, repair, and reuse so the object reads as cultural evidence.
+              Inspired by museum provenance labels, each piece carries a visible record of origin, repair, and reuse — the object reads as cultural evidence, not trend.
             </p>
           </div>
         </div>
@@ -35,7 +35,8 @@ export function ArtifactGallery() {
       <div className="grid gap-5 md:grid-cols-3">
         {artifacts.map((artifact) => (
           <article key={artifact.title} className="artifact-card p-5">
-            <p className="display-type text-2xl uppercase leading-tight text-ash">{artifact.title}</p>
+            <p className="display-type text-[0.68rem] uppercase tracking-[0.2em] text-clay/80">Cat. {artifact.id}</p>
+            <p className="display-type mt-1 text-2xl uppercase leading-tight text-ash">{artifact.title}</p>
             <div className="mt-4 space-y-3 text-sm leading-7 text-ash/78">
               <p>
                 <span className="font-semibold uppercase tracking-[0.14em] text-clay">Provenance:</span> {artifact.provenance}

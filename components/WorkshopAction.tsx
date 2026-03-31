@@ -15,10 +15,10 @@ export function WorkshopAction() {
         <p className="display-type text-sm uppercase tracking-[0.22em] text-clay">The Workshop / The Action</p>
         <h3 className="display-type mt-4 text-3xl uppercase leading-none text-ash">Start with one stitch.</h3>
         <p className="mt-4 text-base leading-7 text-ash/80">
-          Repair, patchwork, reconstruction, and visible mending turn abstract concern into a repeatable making practice.
+          Repair, patchwork, reconstruction, and visible mending turn abstract concern into a repeatable making practice. The garment becomes evidence.
         </p>
         <div className="mt-6 border-2 border-ash bg-ash p-4 text-sm uppercase tracking-[0.14em] text-mist">
-          Curator check: the workshop must feel actionable and inventive, not preachy.
+          Curator check: the workshop must feel inventive and achievable — not a lecture, not a listicle.
         </div>
       </aside>
     </div>

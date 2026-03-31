@@ -64,16 +64,17 @@ a {
 
 .desert-panel {
   background:
-    linear-gradient(180deg, rgba(31, 34, 33, 0.15), rgba(31, 34, 33, 0.4)),
-    linear-gradient(135deg, #c98a47, #8c4f2e 52%, #332f2c);
+    linear-gradient(175deg, rgba(20, 18, 15, 0.22) 0%, rgba(20, 18, 15, 0.55) 100%),
+    linear-gradient(135deg, #bf7e3a 0%, #7e3e22 42%, #2e2820 78%, #1a1714 100%);
 }
 
 .gallery-panel {
   background:
-    radial-gradient(circle at 22% 20%, rgba(232, 225, 214, 0.7), transparent 18%),
-    radial-gradient(circle at 75% 36%, rgba(47, 127, 120, 0.8), transparent 23%),
-    radial-gradient(circle at 42% 78%, rgba(181, 65, 46, 0.85), transparent 21%),
-    #202321;
+    radial-gradient(ellipse at 18% 22%, rgba(232, 225, 214, 0.65), transparent 20%),
+    radial-gradient(ellipse at 72% 30%, rgba(47, 127, 120, 0.75), transparent 24%),
+    radial-gradient(ellipse at 38% 72%, rgba(181, 65, 46, 0.8), transparent 22%),
+    radial-gradient(ellipse at 84% 75%, rgba(198, 139, 46, 0.55), transparent 18%),
+    #1e2120;
 }
 
 .impact-number {
