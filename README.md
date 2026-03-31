@@ -1,123 +1,115 @@
 # Thread & Trace: The Upcycling Revolution
 
-Thread & Trace is a Bauhaus-inspired digital museum built for an IS117 midterm project. The site reframes fast fashion waste as a creative and cultural problem, then guides the visitor through a structured exhibit journey from environmental shock to artistic action.
+Thread & Trace is a story-led digital museum experience built for IS117. It combines a project-specific Next.js site with a durable repository workflow for Spec -> Sprint -> QA delivery.
 
-## Mission
+## What This Repository Is
 
-- Transform the perception of waste into wealth.
-- Highlight the environmental cost of fast fashion.
-- Position upcycling as a creative practice with cultural value.
+This repository has two layers:
 
-## Target Audience
+1. A Bauhaus-inspired museum page that guides visitors from problem framing to creative action.
+2. A process model that keeps major decisions in files, not only in chat history.
 
-- Gen-Z and Millennial consumers.
-- Environmental advocates.
-- DIY makers and upcycling creators.
+## Current State
+
+The repository currently includes:
+
+- a project-specific App Router site shell
+- componentized exhibition rooms and supporting narrative cards
+- shared site configuration for metadata and editorial framing
+- GitHub Pages deployment through GitHub Actions
+- active planning artifacts for spec, sprint, and QA
+
+## Start Here
+
+If you are new to the repository, read these in order:
+
+1. [docs/foundation/orchestration-workflow.md](docs/foundation/orchestration-workflow.md)
+2. [docs/foundation/prompting-playbook.md](docs/foundation/prompting-playbook.md)
+3. [docs/_specs/README.md](docs/_specs/README.md)
+4. [docs/_specs/thread-trace-foundation/spec.md](docs/_specs/thread-trace-foundation/spec.md)
+
+## Museum Narrative Route
+
+1. Entry room: The Atacama Graveyard.
+2. Cost room: Water footprint interpretation.
+3. Gallery room: Clothing as history with provenance.
+4. Community room: Social proof through pledges and statements.
+5. Workshop room: Action-oriented upcycling guidance.
 
 ## Design Framework
 
 - Design style: Bauhaus.
-- Cialdini principle: Social Proof.
+- Persuasion principle: Social Proof.
 - Brand archetype: The Creator.
 
-### Bauhaus execution
+Detailed design rules are in [docs/design-system.md](docs/design-system.md).
 
-- Grid-first composition.
-- Earthy tones mixed with industrial grays.
-- Bold sans-serif typography using Archivo and Jost.
-- Functional data blocks and hard-edged content panels.
+## Process Model
 
-### Social Proof execution
+For substantial work, use:
 
-- Community impact counter based on pledges to buy used, repair, or upcycle.
-- Community statement wall to show collective participation.
+1. Write or update the governing spec.
+2. QA the spec.
+3. Write one sprint doc.
+4. QA the sprint doc.
+5. Implement the sprint.
+6. QA implementation against scope and verification steps.
 
-### Creator archetype tone
+This sequence is documented in [docs/foundation/orchestration-workflow.md](docs/foundation/orchestration-workflow.md).
 
-- Inspiring, resourceful, visionary, and non-judgmental.
-- Vocabulary centered on reclaiming, stitching, narrative, uniqueness, and legacy.
-
-## Exhibition Narrative Flow
-
-1. The Entry: The Atacama Graveyard.
-2. The Shift: The water cost of denim.
-3. The Gallery: Clothing as History.
-4. The Workshop: Practical upcycling actions.
-
-## Spec → Sprint → QA Workflow
-
-This project was intentionally developed using an agentic workflow modeled on a spec-first orchestration process.
-
-### Step 1: Spec
-
-Before writing code, the project established a design system based on Bauhaus visual logic and Cialdini's Social Proof principle. That design system set the rules for layout, tone, palette, component scope, and narrative order so the build stayed aligned with the museum concept.
-
-Reference document: [docs/design-system.md](docs/design-system.md)
-
-### Step 2: Sprint Orchestration
-
-The build was divided into focused sprints rather than being generated as one undifferentiated page.
-
-- Sprint A: Atacama landing hero and primary narrative framing.
-- Sprint B: Met-inspired artifact gallery and provenance cards.
-- Sprint C: Community impact counter, statement wall, and workshop actions.
-
-Reference document: [docs/sprints.md](docs/sprints.md)
-
-### Step 3: Curator Review
-
-After the main components were assembled, the site was reviewed with a curator lens:
-
-- Does the educational value remain clear?
-- Does the visual system feel coherent and intentional?
-- Does the tone sound like a creator-led museum, not a retail storefront?
-
-This review informed the final CSS direction, especially the use of visible grids, exhibit-style labels, provenance language, and stronger contrast between the Atacama problem space and the vibrant gallery space.
-
-## Tech Stack
-
-- Next.js App Router
-- TypeScript
-- Tailwind CSS
-
-## Project Structure
+## Repository Structure
 
 ```text
-app/
-  globals.css
-  layout.tsx
-  page.tsx
-components/
-  ArtifactGallery.tsx
-  CommunityImpact.tsx
-  CostShift.tsx
-  HeroEntry.tsx
-  SectionFrame.tsx
-  WorkshopAction.tsx
-data/
-  exhibits.ts
-docs/
-  design-system.md
-  sprints.md
+.
+├── .github/
+│   └── workflows/
+├── app/
+├── components/
+│   └── site/
+├── data/
+├── docs/
+│   ├── foundation/
+│   └── _specs/
+├── lib/
+├── next.config.mjs
+├── package.json
+└── tailwind.config.ts
 ```
 
-## Running the Project
+## Development
+
+Install dependencies:
 
 ```bash
 npm install
+```
+
+Run local development:
+
+```bash
 npm run dev
 ```
 
-Then open `http://localhost:3000`.
+Build for production export:
 
-## Presentation Notes
+```bash
+npm run build
+```
 
-- Problem reference: Atacama Desert clothing dumping grounds.
-- Quality reference: The Met Costume Institute.
-- Persuasion bridge: Social Proof through the community pledge and impact counter.
+## Deployment
 
-## Professional Commit Message Suggestions
+GitHub Pages deployment is configured via:
 
-- `feat: build Thread & Trace midterm museum experience`
-- `docs: add spec-driven orchestration and sprint narrative`
-- `style: refine Bauhaus exhibit system for curator review`
+- [next.config.mjs](next.config.mjs)
+- [.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml)
+
+Deployment target:
+
+- https://vangela6780.github.io/is117Midterm/
+
+## Active Workstream
+
+- [docs/_specs/thread-trace-foundation/spec.md](docs/_specs/thread-trace-foundation/spec.md)
+- [docs/_specs/thread-trace-foundation/spec-qa.md](docs/_specs/thread-trace-foundation/spec-qa.md)
+- [docs/_specs/thread-trace-foundation/sprints/sprint-1-shell-and-process.md](docs/_specs/thread-trace-foundation/sprints/sprint-1-shell-and-process.md)
+- [docs/_specs/thread-trace-foundation/sprints/sprint-1-shell-and-process-qa.md](docs/_specs/thread-trace-foundation/sprints/sprint-1-shell-and-process-qa.md)

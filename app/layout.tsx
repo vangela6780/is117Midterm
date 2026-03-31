@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Archivo, Jost } from "next/font/google";
+import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -13,9 +14,8 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
-  title: "Thread & Trace: The Upcycling Revolution",
-  description:
-    "A Bauhaus-inspired digital museum about fast fashion waste, community impact, and the creative power of upcycling."
+  title: siteConfig.title,
+  description: siteConfig.description
 };
 
 export default function RootLayout({
