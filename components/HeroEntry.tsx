@@ -25,7 +25,7 @@ export function HeroEntry() {
           {stats.map((stat) => (
             <div key={stat.label} className="border-2 border-ash bg-background p-4">
               <p className="display-type text-2xl font-semibold uppercase text-rust">{stat.value}</p>
-              <p className="mt-2 text-sm uppercase tracking-[0.14em] text-ash/70">{stat.label}</p>
+              <p className="mt-2 text-sm uppercase tracking-[0.14em] text-ash/80">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -44,14 +44,14 @@ export function HeroEntry() {
           <div className="relative flex h-full flex-col justify-between">
             <div className="flex items-start justify-between">
               <p className="display-type text-2xl uppercase leading-tight">The Atacama Graveyard</p>
-              <p className="text-[0.7rem] uppercase tracking-[0.18em] text-mist/55">−24.5° / −68.8°</p>
+              <p aria-hidden="true" className="text-[0.75rem] uppercase tracking-[0.18em] text-mist/55">−24.5° / −68.8°</p>
             </div>
             <div>
               <p className="max-w-sm text-base leading-7 text-mist/85">
                 A harsh landscape of excess — 59,000 tonnes of discarded garments per year, rendered as a high-contrast
                 mural panel to set the museum's emotional threshold.
               </p>
-              <p className="mt-3 text-[0.7rem] uppercase tracking-[0.16em] text-mist/45">Exhibit record A-001 · Active archive</p>
+              <p aria-hidden="true" className="mt-3 text-[0.75rem] uppercase tracking-[0.16em] text-mist/45">Exhibit record A-001 · Active archive</p>
             </div>
           </div>
         </div>
@@ -60,6 +60,7 @@ export function HeroEntry() {
             href="https://www.npr.org/2021/11/08/1053279833/chile-desert-fast-fashion-pollution"
             target="_blank"
             rel="noreferrer"
+            aria-label="View Atacama NPR article (opens in new tab)"
             className="border-2 border-ash bg-ochre px-4 py-5 text-sm font-semibold uppercase tracking-[0.14em] text-ash transition hover:bg-sand"
           >
             View Atacama reference

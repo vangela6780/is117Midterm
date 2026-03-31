@@ -9,7 +9,7 @@ import { routeCards, siteConfig } from "@/lib/site";
 
 export function HomeShell() {
   return (
-    <main className="museum-shell min-h-screen px-4 py-5 md:px-8 md:py-8">
+    <main id="main-content" className="museum-shell min-h-screen px-4 py-5 md:px-8 md:py-8">
       <div className="mx-auto max-w-7xl space-y-8 md:space-y-10">
         <RevealOnScroll>
           <section className="artifact-card bg-mist p-5 md:p-7">

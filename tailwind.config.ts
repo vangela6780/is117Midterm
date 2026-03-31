@@ -10,7 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         sand: "#d9bf93",
-        clay: "#a85d39",
+        clay: "#7a3d22",
         ash: "#2d312f",
         mist: "#e8e1d6",
         ochre: "#c68b2e",

@@ -11,8 +11,14 @@ type RevealOnScrollProps = {
 export function RevealOnScroll({ children, delay = 0, className = "" }: RevealOnScrollProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const prefersReduced =
+    typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   useEffect(() => {
+    if (prefersReduced) {
+      setVisible(true);
+      return;
+    }
     const el = ref.current;
     if (!el) return;
     const io = new IntersectionObserver(
@@ -26,7 +32,7 @@ export function RevealOnScroll({ children, delay = 0, className = "" }: RevealOn
     );
     io.observe(el);
     return () => io.disconnect();
-  }, []);
+  }, [prefersReduced]);
 
   return (
     <div

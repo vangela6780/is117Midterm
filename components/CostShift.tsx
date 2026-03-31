@@ -6,12 +6,16 @@ export function CostShift() {
         <p className="impact-number mt-4 text-teal">2,000</p>
         <p className="display-type mt-2 text-2xl uppercase text-ash md:text-3xl">gallons of water</p>
         <p className="mt-4 max-w-md text-base leading-7 text-ash/75">
-          The average pair of denim jeans requires 2,000 gallons of water from crop to closet — more than a full year’s drinking supply for one person. This room reframes fashion as resource infrastructure.
+          The average pair of denim jeans requires 2,000 gallons of water from crop to closet — more than a full year's drinking supply for one person. This room reframes fashion as resource infrastructure.
         </p>
       </div>
-      <div className="grid gap-4 md:grid-cols-3">
-        <div className="border-2 border-ash bg-background p-5 md:col-span-2">
-          <div className="flex h-full items-end gap-3">
+      <figure
+        className="grid gap-4 md:grid-cols-3"
+        role="img"
+        aria-label="Bar chart: consumer impact has the highest water footprint, followed by dyeing and finishing, then cotton growth"
+      >
+        <div className="border-2 border-ash bg-background p-5 md:col-span-2" aria-hidden="true">
+          <div className="flex min-h-[140px] items-end gap-3">
             <div className="w-1/3 bg-rust" style={{ height: "28%" }} />
             <div className="w-1/3 bg-ochre" style={{ height: "56%" }} />
             <div className="w-1/3 bg-teal" style={{ height: "100%" }} />
@@ -28,7 +32,7 @@ export function CostShift() {
             Bauhaus logic keeps the data legible: simple geometry, direct labeling. The eye goes straight from bar height to cost — no decorative clutter between viewer and consequence.
           </p>
         </div>
-      </div>
+      </figure>
     </div>
   );
 }

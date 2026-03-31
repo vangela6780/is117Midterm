@@ -26,6 +26,7 @@ export function ArtifactGallery() {
             href="https://www.metmuseum.org/about-the-met/collection-areas/the-costume-institute"
             target="_blank"
             rel="noreferrer"
+            aria-label="View Met Costume Institute (opens in new tab)"
             className="mt-6 border-2 border-ash bg-ash px-4 py-4 text-center text-sm font-semibold uppercase tracking-[0.14em] text-mist transition hover:bg-clay"
           >
             View Met inspiration
@@ -35,7 +36,7 @@ export function ArtifactGallery() {
       <div className="grid gap-5 md:grid-cols-3">
         {artifacts.map((artifact) => (
           <article key={artifact.title} className="artifact-card p-5">
-            <p className="display-type text-[0.68rem] uppercase tracking-[0.2em] text-clay/80">Cat. {artifact.id}</p>
+            <p className="display-type text-xs uppercase tracking-[0.2em] text-clay">Cat. {artifact.id}</p>
             <p className="display-type mt-1 text-2xl uppercase leading-tight text-ash">{artifact.title}</p>
             <div className="mt-4 space-y-3 text-sm leading-7 text-ash/78">
               <p>

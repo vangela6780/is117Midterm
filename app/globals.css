@@ -26,11 +26,59 @@ body {
     var(--background);
   color: var(--foreground);
   font-family: var(--font-body), sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Skip to main content link for keyboard users */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.6rem 1.2rem;
+  background: #2d312f;
+  color: #f3ede2;
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  border: 2px solid #c68b2e;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* Visible focus rings for keyboard navigation (WCAG 2.4.7) */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid #c68b2e;
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* Reduced motion: respect user OS preference (WCAG 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 .museum-shell {
