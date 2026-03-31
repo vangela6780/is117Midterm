@@ -7,24 +7,29 @@ export function ArtifactGallery() {
         <div
           className="gallery-panel curated-image-panel min-h-[280px] border-2 border-ash p-6 text-mist"
           role="img"
-          aria-label="Textile and garment textures used as a visual reference for material-focused artifact interpretation"
+          aria-label="Material study image showing layered textile surfaces used to frame the artifact gallery"
           style={{
             backgroundImage:
               "linear-gradient(160deg, rgba(18, 20, 19, 0.48) 0%, rgba(18, 20, 19, 0.72) 100%), url('https://images.pexels.com/photos/6069554/pexels-photo-6069554.jpeg?auto=compress&cs=tinysrgb&w=1600')",
             backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundPosition: "center 42%",
+            backgroundBlendMode: "multiply",
           }}
         >
           <div className="relative z-[2] flex h-full flex-col justify-between">
             <div>
               <p className="museum-kicker text-mist/80">The Gallery / The Art</p>
-              <h3 className="museum-title mt-3 text-[2.38rem] leading-[0.92] text-mist">Clothing as history</h3>
+              <h3 className="museum-title mt-3 text-[2.38rem] leading-[0.92] text-mist">Material as record</h3>
             </div>
             <div>
               <p className="max-w-lg text-base leading-7 text-mist/85">
-                Inspired by museum provenance labels, each piece carries a visible record of origin, repair, and reuse — the object reads as cultural evidence, not trend.
+                This image operates as a material study: surface, weave, wear, and repair are read here as historical marks,
+                preparing the viewer to encounter each object as evidence rather than trend.
               </p>
-              <p className="image-credit mt-3">Image study: textile surfaces · Source: Pexels</p>
+              <div className="image-meta-bar">
+                <p aria-hidden="true" className="image-study-label">Plate II · material study</p>
+                <p className="image-credit">Textile surface reference · Source: Pexels</p>
+              </div>
             </div>
           </div>
         </div>

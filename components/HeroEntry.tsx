@@ -35,26 +35,29 @@ export function HeroEntry() {
         <div
           className="desert-panel curated-image-panel relative min-h-[340px] border-2 border-ash p-5 text-mist"
           role="img"
-          aria-label="Arid desert landscape used as contextual backdrop for the Atacama textile waste narrative"
+          aria-label="Contextual desert study used to frame the Atacama textile waste narrative"
           style={{
             backgroundImage:
               "linear-gradient(175deg, rgba(14, 13, 11, 0.35) 0%, rgba(14, 13, 11, 0.66) 100%), url('https://images.pexels.com/photos/1001435/pexels-photo-1001435.jpeg?auto=compress&cs=tinysrgb&w=1600')",
             backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundPosition: "center 58%",
+            backgroundBlendMode: "multiply",
           }}
         >
           <div className="relative z-[2] flex h-full flex-col justify-between">
             <div className="flex items-start justify-between">
-              <p className="museum-title text-[1.85rem] leading-tight text-mist">The Atacama Graveyard</p>
+              <p className="museum-title text-[1.85rem] leading-tight text-mist">Atacama: context plate</p>
               <p aria-hidden="true" className="text-[0.75rem] uppercase tracking-[0.18em] text-mist/55">−24.5° / −68.8°</p>
             </div>
             <div>
               <p className="max-w-sm text-base leading-7 text-mist/85">
-                A harsh landscape of excess — 59,000 tonnes of discarded garments per year, rendered as a high-contrast
-                mural panel to set the museum's emotional threshold.
+                A contextual landscape study establishes the arid geography surrounding the exhibition's central evidence:
+                the accumulation of discarded garments and the afterlife of fast fashion.
               </p>
-              <p aria-hidden="true" className="mt-3 text-[0.75rem] uppercase tracking-[0.16em] text-mist/45">Exhibit record A-001 · Active archive</p>
-              <p className="image-credit mt-3">Image study: arid topography · Source: Pexels</p>
+              <div className="image-meta-bar">
+                <p aria-hidden="true" className="image-study-label">Plate I · contextual study</p>
+                <p className="image-credit">Arid topography reference · Source: Pexels</p>
+              </div>
             </div>
           </div>
         </div>
