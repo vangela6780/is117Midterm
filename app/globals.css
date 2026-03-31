@@ -280,3 +280,23 @@ button:focus-visible {
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(10px);
 }
+
+.noir-panel {
+  border: 1px solid rgba(243, 235, 222, 0.12);
+  background:
+    linear-gradient(180deg, rgba(28, 24, 25, 0.95), rgba(15, 13, 14, 0.98));
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+}
+
+.mod-disc {
+  display: inline-block;
+  border-radius: 999px;
+  border: 1px solid rgba(243, 235, 222, 0.25);
+  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.14), transparent 35%), rgba(255, 255, 255, 0.04);
+}
+
+.couture-rule {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(to right, rgba(243, 235, 222, 0.55), rgba(243, 235, 222, 0.1), transparent);
+}
