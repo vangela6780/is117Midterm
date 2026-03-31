@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import { Archivo, Jost } from "next/font/google";
+import { Playfair_Display, Source_Sans_3 } from "next/font/google";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
-const archivo = Archivo({
+const playfair = Playfair_Display({
   subsets: ["latin"],
+  display: "swap",
   variable: "--font-display"
 });
 
-const jost = Jost({
+const sourceSans = Source_Sans_3({
   subsets: ["latin"],
+  display: "swap",
   variable: "--font-body"
 });
 
@@ -25,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${archivo.variable} ${jost.variable}`}>
+      <body className={`${playfair.variable} ${sourceSans.variable}`}>
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>

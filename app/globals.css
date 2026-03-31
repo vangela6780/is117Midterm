@@ -17,6 +17,7 @@
 
 html {
   scroll-behavior: smooth;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -30,7 +31,11 @@ body {
   color: var(--foreground);
   font-family: var(--font-body), sans-serif;
   font-size: 1rem;
-  line-height: 1.6;
+  line-height: 1.65;
+  font-weight: 430;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Skip to main content link for keyboard users */
@@ -103,6 +108,8 @@ button:focus-visible {
 
 .display-type {
   font-family: var(--font-display), sans-serif;
+  font-weight: 620;
+  text-wrap: balance;
 }
 
 .section-label {
@@ -112,9 +119,9 @@ button:focus-visible {
   padding: 0.38rem 0.82rem;
   border: 2px solid #1b1b19;
   background: var(--panel-strong);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 700;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
