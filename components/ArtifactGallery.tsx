@@ -4,7 +4,17 @@ export function ArtifactGallery() {
   return (
     <div className="space-y-7">
       <div className="grid gap-6 lg:grid-cols-[1fr_0.85fr]">
-        <div className="gallery-panel min-h-[280px] border-2 border-ash p-6 text-mist">
+        <div
+          className="gallery-panel min-h-[280px] border-2 border-ash p-6 text-mist"
+          role="img"
+          aria-label="Close-up textile and garment textures representing upcycled fashion artifacts"
+          style={{
+            backgroundImage:
+              "linear-gradient(160deg, rgba(18, 20, 19, 0.48) 0%, rgba(18, 20, 19, 0.72) 100%), url('https://images.pexels.com/photos/6069554/pexels-photo-6069554.jpeg?auto=compress&cs=tinysrgb&w=1600')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
           <div className="flex h-full flex-col justify-between">
             <div>
               <p className="museum-kicker text-mist/80">The Gallery / The Art</p>

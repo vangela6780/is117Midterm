@@ -32,7 +32,17 @@ export function HeroEntry() {
         </div>
       </div>
       <div className="grid gap-4">
-        <div className="desert-panel relative min-h-[340px] border-2 border-ash p-5 text-mist">
+        <div
+          className="desert-panel relative min-h-[340px] border-2 border-ash p-5 text-mist"
+          role="img"
+          aria-label="Atacama desert landscape with discarded clothing, illustrating textile waste accumulation"
+          style={{
+            backgroundImage:
+              "linear-gradient(175deg, rgba(14, 13, 11, 0.35) 0%, rgba(14, 13, 11, 0.66) 100%), url('https://images.pexels.com/photos/1001435/pexels-photo-1001435.jpeg?auto=compress&cs=tinysrgb&w=1600')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 opacity-[0.07]"
