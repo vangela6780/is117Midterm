@@ -12,12 +12,7 @@ export function CommunityImpact() {
 
   return (
     <div className="grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
-      <div className="artifact-card relative overflow-hidden p-5 sm:p-6">
-        <div aria-hidden className="absolute right-5 top-5 flex gap-2">
-          <span className="mod-disc h-3 w-3" />
-          <span className="mod-disc h-3 w-3 bg-rust/20" />
-          <span className="mod-disc h-3 w-3 bg-ochre/20" />
-        </div>
+      <div className="artifact-card p-5 sm:p-6">
         <p className="display-type text-sm uppercase tracking-[0.22em] text-clay">Social Proof / Community Impact</p>
         <p
           className="impact-number mt-5 text-rust"
@@ -35,7 +30,7 @@ export function CommunityImpact() {
           type="button"
           onClick={() => setPledges((current) => current + 1)}
           aria-label="Add your pledge to the community count"
-          className="mt-6 w-full border border-teal bg-teal px-5 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-mist transition hover:bg-ash sm:w-auto"
+          className="mt-6 w-full border-2 border-ash bg-teal px-5 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-mist transition hover:bg-ash sm:w-auto"
         >
           Add your pledge
         </button>
@@ -43,8 +38,7 @@ export function CommunityImpact() {
       </div>
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-1">
         {communityStatements.map((statement, index) => (
-          <blockquote key={statement} className="artifact-card relative overflow-hidden p-5 text-base leading-7 text-ash/82">
-            <div aria-hidden className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#b5412e,#c68b2e,#2f7f78)]" />
+          <blockquote key={statement} className="border-2 border-ash bg-background p-5 text-base leading-7 text-ash/82">
             <p className="display-type text-sm uppercase tracking-[0.22em] text-clay">Statement {index + 1}</p>
             <p className="mt-3">{statement}</p>
           </blockquote>
