@@ -6,17 +6,17 @@ const stats = [
 
 export function HeroEntry() {
   return (
-    <section className="grid gap-8 border-2 border-ash bg-mist p-6 shadow-museum lg:grid-cols-[1.1fr_0.9fr] lg:p-8">
-      <div className="space-y-6">
+    <section className="grid gap-7 border-2 border-ash bg-mist p-5 shadow-museum md:p-6 lg:grid-cols-[1.1fr_0.9fr] lg:p-8">
+      <div className="space-y-5 md:space-y-6">
         <span className="section-label">The Entry / The Shock</span>
-        <div className="space-y-4">
+        <div className="space-y-3 md:space-y-4">
           <p className="display-type text-sm uppercase tracking-[0.25em] text-clay">
             Thread & Trace: The Upcycling Revolution
           </p>
-          <h1 className="display-type text-5xl font-semibold uppercase leading-[0.9] text-ash md:text-7xl">
+          <h1 className="display-type text-[2.35rem] font-semibold uppercase leading-[0.9] text-ash md:text-[4.2rem]">
             Waste becomes visible before it becomes valuable.
           </h1>
-          <p className="max-w-2xl text-lg leading-8 text-ash/80">
+          <p className="max-w-2xl text-[1.02rem] leading-7 text-ash/80 md:text-lg md:leading-8">
             Atacama's garment graveyard is the opening room of this digital museum. The point is not guilt.
             The point is clarity: once waste is seen, creativity has a material to reclaim.
           </p>

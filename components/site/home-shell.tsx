@@ -8,16 +8,16 @@ import { routeCards, siteConfig } from "@/lib/site";
 
 export function HomeShell() {
   return (
-    <main className="museum-shell min-h-screen px-4 py-6 md:px-8 md:py-8">
-      <div className="mx-auto max-w-7xl space-y-10">
+    <main className="museum-shell min-h-screen px-4 py-5 md:px-8 md:py-8">
+      <div className="mx-auto max-w-7xl space-y-8 md:space-y-10">
         <section className="artifact-card bg-mist p-5 md:p-7">
-          <div className="grid gap-6 lg:grid-cols-[1.2fr_1fr]">
+          <div className="grid gap-5 md:gap-6 lg:grid-cols-[1.2fr_1fr]">
             <div>
               <p className="section-label">{siteConfig.name} Foundation</p>
-              <h1 className="display-type mt-4 text-4xl uppercase leading-[0.9] text-ash md:text-6xl">
+              <h1 className="display-type mt-3 text-[2rem] uppercase leading-[0.9] text-ash md:mt-4 md:text-[3.4rem]">
                 Story-led digital museum route
               </h1>
-              <p className="mt-4 max-w-3xl text-base leading-8 text-ash/80 md:text-lg">
+              <p className="mt-3 max-w-3xl text-[0.98rem] leading-7 text-ash/80 md:mt-4 md:text-lg md:leading-8">
                 {siteConfig.description}
               </p>
             </div>
@@ -25,7 +25,7 @@ export function HomeShell() {
               {routeCards.map((card) => (
                 <article key={card.title} className="border-2 border-ash bg-background p-4">
                   <p className="display-type text-xs uppercase tracking-[0.16em] text-clay">In view</p>
-                  <h2 className="display-type mt-2 text-2xl uppercase text-ash">{card.title}</h2>
+                  <h2 className="display-type mt-2 text-xl uppercase leading-tight text-ash md:text-2xl">{card.title}</h2>
                   <p className="mt-2 text-sm leading-7 text-ash/75">{card.description}</p>
                 </article>
               ))}
