@@ -2,20 +2,20 @@ export const artifacts = [
   {
     id: "B-012",
     title: "Borderline Jacket",
-    provenance: "Recovered denim panels, deadstock canvas, and transit-map stitching sourced from a Newark factory surplus.",
-    legacy: "A workwear jacket rebuilt to map migration, labor, and durability — each seam line corresponds to a documented trade route."
+    provenance: "Recovered denim panels, deadstock canvas, and transit-map stitching sourced from Newark factory surplus lots (2022-2024).",
+    legacy: "A reconstructed workwear silhouette mapping migration, labor, and durability; each seam line corresponds to a documented trade route."
   },
   {
     id: "S-031",
     title: "Signal Skirt",
-    provenance: "Discarded shirting, upholstery trim, and rescued tailoring chalk marks from three separate donor garments.",
-    legacy: "A layered piece that keeps the memory of previous garments visible instead of hiding the seams — the joins are the story."
+    provenance: "Discarded shirting, upholstery trim, and preserved tailoring chalk marks from three donor garments.",
+    legacy: "A layered construction in which joins remain visible, preserving evidence of prior forms rather than concealing them."
   },
   {
     id: "T-007",
     title: "Archive Tote",
-    provenance: "Factory offcuts, repair patches, and salvaged labels collected from local clothing swaps in 2023–2024.",
-    legacy: "An everyday object turned public statement: utility and provenance made visible, not tidied away."
+    provenance: "Factory offcuts, repair patches, and salvaged labels gathered through local clothing swap networks (2023-2024).",
+    legacy: "An everyday carry object reframed as public statement: utility and provenance remain legible rather than erased."
   }
 ];
 

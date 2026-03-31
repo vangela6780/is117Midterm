@@ -1,7 +1,7 @@
 const stats = [
-  { label: "Desert dumping grounds", value: "39,000+" },
-  { label: "Garments imported yearly into Chile's free zone", value: "Millions" },
-  { label: "Creative prompt", value: "Reclaim instead of replace" }
+  { label: "Discarded garments entering Atacama yearly", value: "59,000t" },
+  { label: "Garments routed through Iquique free zone", value: "Millions" },
+  { label: "Curatorial premise", value: "Waste to material" }
 ];
 
 export function HeroEntry() {
@@ -17,8 +17,9 @@ export function HeroEntry() {
             Waste becomes visible before it becomes valuable.
           </h1>
           <p className="museum-copy max-w-2xl text-[1.02rem] leading-7 md:text-lg md:leading-8">
-            Atacama's garment graveyard is the opening room of this digital museum. The point is not guilt.
-            The point is clarity: once waste is seen, creativity has a material to reclaim.
+            This opening gallery positions Atacama not as spectacle, but as evidence. The exhibition asks viewers to move
+            from passive consumption toward material literacy: to see discarded clothing as design potential, labor history,
+            and environmental record.
           </p>
         </div>
         <div className="grid gap-3 md:grid-cols-3">
@@ -66,7 +67,7 @@ export function HeroEntry() {
             View Atacama reference
           </a>
           <div className="border-2 border-ash bg-ash px-4 py-5 text-sm uppercase tracking-[0.14em] text-mist">
-            Curator cue: frame the problem as a material archive, not disposable clutter.
+            Curatorial statement: this exhibition treats disposal sites as archives of production, value, and neglect.
           </div>
         </div>
       </div>

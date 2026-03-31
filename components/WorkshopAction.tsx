@@ -12,13 +12,14 @@ export function WorkshopAction() {
         ))}
       </div>
       <aside className="artifact-card p-6">
-        <p className="display-type text-sm uppercase tracking-[0.22em] text-clay">The Workshop / The Action</p>
+        <p className="display-type text-sm uppercase tracking-[0.22em] text-clay">The Workshop / Visitor Action</p>
         <h3 className="museum-title mt-4 text-[2.14rem] leading-[0.94] text-ash">Start with one stitch.</h3>
         <p className="mt-4 text-base leading-7 text-ash/80">
-          Repair, patchwork, reconstruction, and visible mending turn abstract concern into a repeatable making practice. The garment becomes evidence.
+          Repair, patchwork, reconstruction, and visible mending convert reflection into practice. In this room, each
+          intervention is treated as a small act of stewardship.
         </p>
         <div className="mt-6 border-2 border-ash bg-ash p-4 text-sm uppercase tracking-[0.14em] leading-6 text-mist">
-          Curator check: the workshop must feel inventive and achievable — not a lecture, not a listicle.
+          Visitor prompt: bring one worn garment and document one repair decision before replacement.
         </div>
       </aside>
     </div>

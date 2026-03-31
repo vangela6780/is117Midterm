@@ -17,9 +17,10 @@ export function ArtifactGallery() {
         </div>
         <div className="artifact-card flex flex-col justify-between p-6">
           <div>
-            <p className="display-type text-sm uppercase tracking-[0.22em] text-clay">Quality reference</p>
+            <p className="display-type text-sm uppercase tracking-[0.22em] text-clay">Curatorial benchmark</p>
             <p className="mt-3 text-base leading-7 text-ash/80">
-              The Met serves as the quality benchmark: objects deserve context, craftsmanship, and interpretive care.
+              The Costume Institute model reinforces a core principle used here: garments must be interpreted as cultural
+              objects with provenance, technique, and social context.
             </p>
           </div>
           <a
@@ -37,7 +38,7 @@ export function ArtifactGallery() {
         {artifacts.map((artifact) => (
           <article key={artifact.title} className="artifact-card p-5">
             <p className="display-type text-xs uppercase tracking-[0.2em] text-clay">Cat. {artifact.id}</p>
-            <p className="display-type mt-1 text-2xl uppercase leading-tight text-ash">{artifact.title}</p>
+            <p className="museum-title mt-1 text-[1.72rem] leading-tight text-ash">{artifact.title}</p>
             <div className="mt-4 space-y-3 text-sm leading-7 text-ash/78">
               <p>
                 <span className="font-semibold uppercase tracking-[0.14em] text-clay">Provenance:</span> {artifact.provenance}
