@@ -6,7 +6,7 @@ const stats = [
 
 export function HeroEntry() {
   return (
-    <section className="grid gap-6 border-2 border-ash bg-mist p-4 shadow-museum sm:p-5 md:p-6 xl:grid-cols-[1.08fr_0.92fr] xl:p-8">
+    <section id="entry" className="grid gap-6 border-2 border-ash bg-mist p-4 shadow-museum sm:p-5 md:p-6 xl:grid-cols-[1.08fr_0.92fr] xl:p-8">
       <div className="space-y-5 md:space-y-6">
         <span className="section-label">The Entry / The Shock</span>
         <div className="space-y-3 md:space-y-4">
@@ -29,6 +29,21 @@ export function HeroEntry() {
               <p className="mt-2 text-sm uppercase tracking-[0.14em] text-ash/80">{stat.label}</p>
             </div>
           ))}
+        </div>
+        <div className="grid gap-4 border-2 border-ash bg-panel p-4 sm:grid-cols-[1fr_auto] sm:items-end">
+          <div>
+            <p className="museum-kicker text-clay">Visitor orientation wall</p>
+            <p className="mt-2 text-sm leading-7 text-ash/82 sm:text-base">
+              Route recommendation: begin in Entry, continue through Cost and Gallery, pause at Community statements,
+              then complete one action in the Workshop before leaving the exhibition.
+            </p>
+          </div>
+          <a
+            href="#cost"
+            className="inline-flex items-center justify-center border-2 border-ash bg-ash px-4 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-mist transition hover:-translate-y-0.5 hover:bg-clay"
+          >
+            Start the route
+          </a>
         </div>
       </div>
       <div className="grid gap-4">
