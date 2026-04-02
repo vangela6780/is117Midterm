@@ -248,6 +248,21 @@ button:focus-visible {
   animation: pulseDown 1.8s ease-in-out infinite;
 }
 
+.hero-glow {
+  animation: heroGlow 4.8s ease-in-out infinite;
+}
+
+.hero-stat-card {
+  transition: transform 220ms ease, background-color 220ms ease;
+}
+
+@media (hover: hover) {
+  .hero-stat-card:hover {
+    transform: translateY(-2px);
+    background-color: rgba(27, 27, 25, 0.58);
+  }
+}
+
 @keyframes pulseDown {
   0% {
     transform: translateY(0);
@@ -263,8 +278,27 @@ button:focus-visible {
   }
 }
 
+@keyframes heroGlow {
+  0% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.08);
+  }
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .entry-scroll-indicator {
+    animation: none;
+  }
+
+  .hero-glow {
     animation: none;
   }
 }
