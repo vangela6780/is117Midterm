@@ -1,7 +1,7 @@
+import Link from "next/link";
 import { ArtifactGallery } from "@/components/ArtifactGallery";
 import { CommunityImpact } from "@/components/CommunityImpact";
 import { CostShift } from "@/components/CostShift";
-import { HeroEntry } from "@/components/HeroEntry";
 import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { SectionFrame } from "@/components/SectionFrame";
 import { WorkshopAction } from "@/components/WorkshopAction";
@@ -23,12 +23,22 @@ export function HomeShell() {
               <p className="museum-copy mt-3 text-[0.98rem] leading-7 md:mt-4 md:text-[1.06rem] md:leading-8">
                 {siteConfig.description}
               </p>
+              <div className="mt-5 flex flex-wrap gap-3 md:mt-6">
+                <Link
+                  href="/hero"
+                  className="inline-flex items-center justify-center border-2 border-ash bg-ash px-4 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-mist transition hover:-translate-y-0.5 hover:bg-clay"
+                >
+                  Open Hero Page
+                </Link>
+                <a
+                  href="#cost"
+                  className="inline-flex items-center justify-center border-2 border-ash bg-panel px-4 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-ash transition hover:-translate-y-0.5 hover:bg-sand"
+                >
+                  Skip to Room Two
+                </a>
+              </div>
             </div>
           </section>
-        </RevealOnScroll>
-
-        <RevealOnScroll delay={100}>
-          <HeroEntry />
         </RevealOnScroll>
         <RevealOnScroll>
           <SectionFrame

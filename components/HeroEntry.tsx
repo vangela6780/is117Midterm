@@ -1,12 +1,16 @@
 import { AnimatedMetric } from "@/components/AnimatedMetric";
 
+type HeroEntryProps = {
+  costHref?: string;
+};
+
 const narrativeSteps = [
   "Observe the scale of disposal as a physical landscape.",
   "Interpret garments as evidence of labor, trade, and neglect.",
   "Carry one practical repair action into the next room."
 ];
 
-export function HeroEntry() {
+export function HeroEntry({ costHref = "#cost" }: HeroEntryProps) {
   return (
     <section id="entry" className="space-y-6 border-2 border-ash bg-mist p-4 shadow-museum sm:p-5 md:p-6 xl:p-8">
       <div
@@ -52,7 +56,7 @@ export function HeroEntry() {
                 <span aria-hidden="true">v</span>
               </a>
               <a
-                href="#cost"
+                href={costHref}
                 className="inline-flex items-center gap-2 border-2 border-mist/70 bg-ash/30 px-4 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-mist transition hover:-translate-y-0.5 sm:text-sm"
               >
                 Jump to Resource Cost
@@ -108,7 +112,7 @@ export function HeroEntry() {
               </p>
             </div>
             <a
-              href="#cost"
+              href={costHref}
               className="inline-flex items-center justify-center border-2 border-ash bg-ash px-4 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-mist transition hover:-translate-y-0.5 hover:bg-clay"
             >
               Continue to Cost
