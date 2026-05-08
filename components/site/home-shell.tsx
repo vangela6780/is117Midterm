@@ -7,7 +7,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 
 const sectionIds = ["hero", "cost", "impact", "overconsumption", "waste", "upcycling", "action"];
 
-const repoBasePath = process.env.NODE_ENV === "production" ? "/is117Midterm" : "";
+const repoBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const withBasePath = (path: string) => `${repoBasePath}${path}`;
 
 const IMAGES = {
