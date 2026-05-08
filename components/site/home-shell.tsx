@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { type FormEvent, useEffect, useRef, useState } from "react";
 import Image from "next/image";
@@ -348,60 +348,129 @@ export function HomeShell() {
     <main id="main-content" className="fashion-exhibit relative min-h-screen overflow-x-clip bg-[#1a1410] text-[#e8dfd2]">
       <div aria-hidden className="fashion-grain" />
 
-      <section id="hero" className="relative flex min-h-[92svh] items-center overflow-hidden px-4 sm:px-6 md:px-10 lg:px-16">
-        <motion.div className="absolute inset-0 -z-10" style={{ y: heroOffset }}>
+      <section id="hero" className="relative flex min-h-screen flex-col justify-end overflow-hidden">
+        {/* CINEMATIC HERO REDESIGN — museum entrance, not SaaS dashboard */}
+        {/* Full-bleed parallax background — textile waste imagery for emotional impact */}
+        <motion.div className="absolute inset-0 scale-[1.06]" style={{ y: heroOffset }}>
           <ExhibitImage
-            src={IMAGES.hero}
-            alt="Cinematic documentary scene of fashion waste and discarded garments"
+            src={IMAGES.waste}
+            alt="Mountains of discarded textile waste at an industrial landfill — the hidden destination of fast fashion"
             priority
             sizes="100vw"
             className="h-full w-full"
-            caption="Entry Archive"
           />
-          <div className="absolute inset-0 bg-[linear-gradient(112deg,rgba(16,12,9,0.84)_6%,rgba(16,12,9,0.46)_46%,rgba(16,12,9,0.74)_100%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_26%,rgba(191,157,109,0.16),transparent_42%)]" />
+          {/* Multi-layer atmospheric overlays */}
+          <div className="absolute inset-0 bg-[rgba(7,5,3,0.36)]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[rgba(7,5,3,0.97)] via-[rgba(7,5,3,0.46)] to-[rgba(7,5,3,0.1)]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[rgba(7,5,3,0.82)] via-[rgba(7,5,3,0.2)] to-transparent" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,transparent_28%,rgba(4,3,2,0.6)_100%)]" />
         </motion.div>
 
-        <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-10 py-16 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-          <div>
-            <p className="exhibit-label mb-5">Environmental Exhibit</p>
-            <h1 className="mb-5 max-w-3xl font-[var(--font-display)] text-[clamp(1.9rem,4vw,3rem)] leading-[1.1] tracking-[-0.01em] text-[#ece2d5]">Fashion leaves traces long after trend cycles end.</h1>
-            <p className="mb-8 max-w-2xl text-[0.96rem] leading-relaxed text-[#d2c8ba] sm:text-[1rem]">
-              Enter a guided evidence route that connects clothing choices to extraction, pollution, and disposal.
+        {/* Hero grain texture */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 z-[2] opacity-[0.065]"
+          style={{
+            backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
+            backgroundRepeat: "repeat",
+            backgroundSize: "160px"
+          }}
+        />
+
+        {/* Ambient fiber particles */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 z-[3]">
+          {microfiberParticles.map((particle, idx) => (
+            <motion.span
+              key={`hero-p-${idx}`}
+              className="absolute h-0.5 w-0.5 rounded-full bg-[#e0d0ba]/45"
+              style={{ left: particle.left, top: particle.top }}
+              animate={{ y: [0, -26, 0], opacity: [0.08, 0.48, 0.08] }}
+              transition={{ duration: particle.duration, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: particle.delay }}
+            />
+          ))}
+        </div>
+
+        {/* Top exhibit bar */}
+        <div className="absolute left-0 right-0 top-0 z-10 flex items-center justify-between px-6 py-5 sm:px-8 md:px-12 lg:px-16">
+          <p className="text-[9px] uppercase tracking-[0.22em] text-[#8b7d6b]">Thread &amp; Trace &middot; Environmental Exhibit &middot; 2026</p>
+          <p className="hidden text-[9px] uppercase tracking-[0.2em] text-[#6b6057] sm:block">Admission free &middot; Open now</p>
+        </div>
+
+        {/* Floating stat markers — museum plaque style, right edge */}
+        <motion.div
+          initial={{ opacity: 0, x: 16 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.1, ease: "easeOut", delay: 0.8 }}
+          className="absolute right-6 top-1/2 z-10 hidden -translate-y-1/2 flex-col gap-2.5 lg:flex lg:right-16"
+        >
+          {[
+            { value: "92M", unit: "tonnes", label: "textile waste annually" },
+            { value: "73%", unit: "of clothing", label: "ends in landfill" },
+            { value: "200+", unit: "years", label: "synthetic decomposition" },
+          ].map((stat) => (
+            <div key={stat.value} className="border-l-2 border-[#7a6e61]/80 bg-[rgba(7,5,3,0.72)] py-3 pl-4 pr-6 backdrop-blur-[3px]">
+              <p className="font-[var(--font-display)] text-[1.6rem] leading-none tracking-tight text-[#e6dace]">{stat.value}</p>
+              <p className="mt-1 text-[8px] uppercase tracking-[0.2em] text-[#9f9384]">{stat.unit} &middot; {stat.label}</p>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Main content — editorial bottom-anchored layout */}
+        <div className="relative z-10 px-6 pb-14 sm:px-8 sm:pb-20 md:px-12 lg:px-16">
+          <motion.div
+            initial={{ opacity: 0, y: 36 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <p className="exhibit-label mb-5">Environmental Exhibit &middot; Room Entry</p>
+            <h1 className="mb-5 max-w-2xl font-[var(--font-display)] text-[clamp(1.55rem,3.2vw,2.6rem)] leading-[1.1] tracking-[-0.015em] text-[#ece4d8]">
+              The hidden cost<br className="hidden sm:block" /> of what you wear.
+            </h1>
+            <p className="mb-10 max-w-md text-[0.86rem] leading-relaxed text-[#b0a998] sm:text-[0.91rem]">
+              An evidence-based walk through extraction, pollution, and disposal &mdash; the supply chain fast fashion never shows you.
             </p>
             <div className="flex flex-wrap items-center gap-3">
-              <button type="button" onClick={() => scrollToSection("cost")} className="inline-flex items-center justify-center border border-[#8b7d6b] bg-[rgba(139,125,107,0.12)] px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] transition hover:bg-[#8b7d6b]/20">Begin The Exhibit</button>
-              <button type="button" onClick={() => scrollToSection("login")} className="inline-flex items-center justify-center border border-[#6b6057] px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-[#c5bbac] transition hover:bg-white/5">Member Login</button>
+              <button
+                type="button"
+                onClick={() => scrollToSection("cost")}
+                className="group flex items-center gap-3 border border-[#a89880] bg-[rgba(168,152,128,0.1)] px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#e2d8cc] transition-all hover:bg-[rgba(168,152,128,0.22)]"
+              >
+                Enter the Exhibit
+                <motion.span
+                  aria-hidden
+                  animate={{ x: [0, 3, 0] }}
+                  transition={{ repeat: Number.POSITIVE_INFINITY, duration: 2.4, ease: "easeInOut" }}
+                >&#8594;</motion.span>
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollToSection("login")}
+                className="border border-[#6b6057]/65 px-6 py-3.5 text-[11px] font-medium uppercase tracking-[0.2em] text-[#a89d8e] transition hover:border-[#8b7d6b] hover:text-[#c8bfb0]"
+              >
+                Member Access
+              </button>
             </div>
-          </div>
-
-          <motion.aside
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, ease: "easeOut", delay: 0.1 }}
-            className="rounded-xl border border-[#6b6057]/55 bg-[rgba(19,13,10,0.72)] p-5 backdrop-blur-sm"
-          >
-            <p className="text-[10px] uppercase tracking-[0.16em] text-[#9f9384]">Tonight’s Focus</p>
-            <h3 className="mt-2 font-[var(--font-display)] text-xl leading-tight text-[#e3d8c8]">From purchase to pollution in five rooms.</h3>
-            <div className="mt-4 grid grid-cols-3 gap-2 text-center text-[10px] uppercase tracking-[0.12em] text-[#b9ad9e]">
-              <div className="rounded-md border border-[#6b6057]/40 bg-[rgba(17,12,10,0.6)] px-2 py-2">Water</div>
-              <div className="rounded-md border border-[#6b6057]/40 bg-[rgba(17,12,10,0.6)] px-2 py-2">Waste</div>
-              <div className="rounded-md border border-[#6b6057]/40 bg-[rgba(17,12,10,0.6)] px-2 py-2">Action</div>
-            </div>
-            <p className="mt-4 text-sm leading-relaxed text-[#b8ac9d]">Use spacebar or scroll to move between rooms.</p>
-          </motion.aside>
-
-          <button
-            type="button"
-            onClick={() => scrollToSection("cost")}
-            className="absolute bottom-6 left-1/2 inline-flex -translate-x-1/2 items-center gap-2 border border-[#6b6057]/65 bg-[rgba(20,14,11,0.62)] px-3 py-2 text-[10px] uppercase tracking-[0.16em] text-[#c9beaf] transition hover:bg-[rgba(20,14,11,0.8)]"
-            aria-label="Scroll to next exhibit room"
-          >
-            Scroll
-            <span aria-hidden>↓</span>
-          </button>
+          </motion.div>
         </div>
-      </section>
+
+        {/* Scroll indicator — animated vertical line */}
+        <motion.button
+          type="button"
+          onClick={() => scrollToSection("cost")}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.3, duration: 0.9 }}
+          className="absolute bottom-6 right-6 z-10 flex flex-col items-center gap-2 text-[8px] uppercase tracking-[0.24em] text-[#6b6057] transition hover:text-[#8b7d6b] sm:bottom-8 sm:right-8"
+          aria-label="Scroll to first room"
+        >
+          <motion.span
+            aria-hidden
+            animate={{ scaleY: [0.35, 1, 0.35], opacity: [0.25, 0.75, 0.25] }}
+            transition={{ repeat: Number.POSITIVE_INFINITY, duration: 2.1, ease: "easeInOut" }}
+            className="block h-10 w-px origin-top bg-current"
+          />
+          Scroll
+        </motion.button>      </section>
 
       <section id="cost" className="relative px-4 py-24 sm:px-6 md:px-10 lg:px-16">
         <div className="mx-auto max-w-6xl">
