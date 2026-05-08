@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { siteConfig } from "@/lib/site";
 
-const sectionIds = ["hero", "problem", "shift", "process", "philosophy", "cta"];
+const sectionIds = ["hero", "cost", "impact", "waste", "upcycling", "action"];
 
 function scrollToSection(id: string) {
   const element = document.getElementById(id);
@@ -39,8 +39,7 @@ function nextSectionFromViewport() {
 export function HomeShell() {
   const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
-  const heroY = useTransform(scrollYProgress, [0, 0.25], [0, reduceMotion ? 0 : -80]);
-  const blueprintY = useTransform(scrollYProgress, [0, 0.35], [0, reduceMotion ? 0 : -160]);
+  const heroOverlay = useTransform(scrollYProgress, [0, 0.3], [0, reduceMotion ? 0 : -120]);
 
   useEffect(() => {
     const onKeydown = (event: KeyboardEvent) => {
@@ -69,224 +68,257 @@ export function HomeShell() {
   }, []);
 
   return (
-    <main id="main-content" className="exhibit-shell relative min-h-screen overflow-x-clip bg-[#0c0f13] text-[#f1eee8]">
-      <div aria-hidden className="exhibit-noise" />
-      <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_18%,rgba(205,171,126,0.14),transparent_32%),radial-gradient(circle_at_78%_10%,rgba(137,155,176,0.14),transparent_30%),linear-gradient(180deg,rgba(12,15,19,0.72),rgba(12,15,19,1))]" />
+    <main id="main-content" className="fashion-exhibit relative min-h-screen overflow-x-clip bg-[#1a1410] text-[#e8dfd2]">
+      <div aria-hidden className="fashion-grain" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[rgba(26,20,16,0.4)] via-transparent to-[rgba(26,20,16,0.6)]" />
 
-      <section id="hero" className="relative flex min-h-[100svh] items-center px-5 pb-14 pt-24 sm:px-8 md:px-12 lg:px-16">
-        <motion.div
-          aria-hidden
-          style={{ y: blueprintY }}
-          className="absolute inset-y-[14%] left-1/2 hidden w-[min(760px,76vw)] -translate-x-1/2 rounded-[2rem] border border-white/10 bg-[linear-gradient(130deg,rgba(255,255,255,0.07),rgba(255,255,255,0.01))] shadow-[0_34px_120px_rgba(0,0,0,0.54)] lg:block"
-        >
-          <div className="absolute inset-0 rounded-[2rem] bg-[linear-gradient(rgba(201,204,208,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(201,204,208,0.12)_1px,transparent_1px)] bg-[size:48px_48px]" />
-        </motion.div>
+      {/* HERO: The Entrance Exhibit */}
+      <section id="hero" className="relative flex min-h-[100svh] items-center px-4 py-16 sm:px-6 md:px-10 lg:px-16">
+        <div aria-hidden className="absolute inset-0 opacity-[0.03] mix-blend-multiply" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23000000\" fill-opacity=\"0.1\"%3E%3Cpath d=\"M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')" }}></div>
 
-        <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-10 lg:gap-14">
-          <motion.p
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-            className="museum-plaque"
-          >
-            Curated Installation · {siteConfig.name}
-          </motion.p>
-
+        <div className="relative z-10 mx-auto w-full max-w-6xl">
           <motion.div
-            style={{ y: heroY }}
-            initial={{ opacity: 0, y: 34 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-5xl"
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h1 className="museum-headline text-[clamp(2.8rem,11vw,8.2rem)] leading-[0.9] tracking-[-0.02em]">
-              Build software like a museum curator, not a chaos collector.
+            <p className="exhibit-label mb-8">Environmental Exhibit</p>
+            <h1 className="exhibit-headline mb-6 text-[clamp(2.2rem,5.5vw,3.8rem)] leading-[1.15]">
+              Every shirt has a cost.
             </h1>
-            <p className="mt-6 max-w-2xl text-base leading-8 text-[#ddd8ce] sm:text-lg">
-              Enter a cinematic workflow where every decision is framed, documented, reviewed, and traceable.
+            <p className="mb-8 max-w-2xl text-base leading-relaxed text-[#cfc8b8] sm:text-lg">
+              Fast fashion doesn't disappear. It transforms—polluting water systems, poisoning soil, creating mountains of textile waste. This is the story of what happens after the closet.
             </p>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 22 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="grid gap-4 md:grid-cols-[1.25fr_1fr_1fr]"
+            transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-wrap gap-3"
           >
-            <article className="museum-panel">
-              <p className="text-xs uppercase tracking-[0.17em] text-[#b7b0a1]">Entrance Note</p>
-              <p className="mt-3 text-sm leading-7 text-[#ece6da]">
-                Press Space to glide to the next exhibit panel and explore the full process narrative section by section.
-              </p>
-            </article>
-            <article className="museum-panel">
-              <p className="text-xs uppercase tracking-[0.17em] text-[#b7b0a1]">Workflow Pace</p>
-              <p className="mt-3 text-3xl leading-none text-[#f5f2eb]">6 Steps</p>
-            </article>
-            <article className="museum-panel">
-              <p className="text-xs uppercase tracking-[0.17em] text-[#b7b0a1]">Delivery Mode</p>
-              <p className="mt-3 text-3xl leading-none text-[#f5f2eb]">Spec First</p>
-            </article>
-          </motion.div>
-
-          <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.14em] text-[#c9c2b4]">
             <button
               type="button"
-              onClick={() => scrollToSection("problem")}
-              className="inline-flex items-center justify-center border border-[#c9c2b4]/60 px-5 py-3 transition hover:-translate-y-0.5 hover:bg-white/10"
+              onClick={() => scrollToSection("cost")}
+              className="inline-flex items-center justify-center border border-[#8b7d6b] px-6 py-3 text-sm font-medium transition hover:bg-[#8b7d6b]/15"
             >
-              Begin The Tour
+              Begin The Exhibit
             </button>
             <Link
               href="/hero"
-              className="inline-flex items-center justify-center border border-white/25 px-5 py-3 text-[#e7e1d5] transition hover:-translate-y-0.5 hover:bg-white/10"
+              className="inline-flex items-center justify-center border border-[#6b6057] px-6 py-3 text-sm font-medium text-[#b8b0a0] transition hover:bg-white/5"
             >
-              Alternate Exhibition View
+              Original Exhibition
             </Link>
+          </motion.div>
+        </div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2.4, repeat: Infinity }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        >
+          <p className="text-xs uppercase tracking-wider text-[#8b7d6b] mb-3">Scroll to explore</p>
+          <svg className="h-5 w-5 text-[#8b7d6b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </motion.div>
+      </section>
+
+      {/* SECTION 1: The Hidden Cost */}
+      <section id="cost" className="relative px-4 py-20 sm:px-6 md:px-10 lg:px-16">
+        <div className="mx-auto max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8 }}
+          >
+            <p className="exhibit-label mb-6">Room One · Cost</p>
+            <h2 className="exhibit-heading mb-8 text-[clamp(1.8rem,4.5vw,2.8rem)] leading-[1.2]">
+              The Hidden Cost of Fast Fashion
+            </h2>
+            <p className="max-w-3xl text-base leading-relaxed text-[#cfc8b8] mb-6">
+              One t-shirt takes 2,700 liters of water to produce. One pair of jeans uses 7,000+ liters. The dyes and chemicals used in production poison rivers that millions depend on. Labor is exploited. Communities are destroyed.
+            </p>
+            <p className="max-w-3xl text-base leading-relaxed text-[#cfc8b8]">
+              And then? Eighty-five percent of all textiles end up in landfills every year. That's one garbage truck full of clothes burned or dumped every single second.
+            </p>
+          </motion.div>
+
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            {[
+              { stat: "85%", label: "Textiles to landfill annually" },
+              { stat: "2,700L", label: "Water per cotton t-shirt" },
+              { stat: "10 years", label: "Average time to decompose" }
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="border border-[#6b6057]/40 rounded-lg p-6 bg-[#1a1410]/30"
+              >
+                <p className="text-3xl font-light text-[#d4c7b8] mb-2">{item.stat}</p>
+                <p className="text-sm text-[#8b7d6b]">{item.label}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section id="problem" className="relative px-5 py-20 sm:px-8 md:px-12 lg:px-16">
-        <div className="mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[1.05fr_1fr] lg:items-end">
+      {/* SECTION 2: Environmental Impact */}
+      <section id="impact" className="relative px-4 py-20 sm:px-6 md:px-10 lg:px-16 bg-[#15100d]/40">
+        <div className="mx-auto max-w-6xl">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8 }}
           >
-            <p className="museum-plaque">Exhibit I · The Problem</p>
-            <h2 className="museum-title mt-5 text-[clamp(2rem,7vw,4.5rem)] leading-[0.92]">
-              Teams ship fast, then spend months decoding what they built.
+            <p className="exhibit-label mb-6">Room Two · Impact</p>
+            <h2 className="exhibit-heading mb-8 text-[clamp(1.8rem,4.5vw,2.8rem)] leading-[1.2]">
+              Water, Soil, and Air Poisoned
             </h2>
+            <div className="grid gap-8 md:grid-cols-2">
+              <div>
+                <h3 className="text-lg font-medium text-[#d4c7b8] mb-3">Water Pollution</h3>
+                <p className="text-sm leading-relaxed text-[#a89d8f]">
+                  Textile dyeing is the second-largest polluter of water globally. Heavy metals and toxic chemicals contaminate rivers, making water undrinkable for communities downstream.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-medium text-[#d4c7b8] mb-3">Microplastics</h3>
+                <p className="text-sm leading-relaxed text-[#a89d8f]">
+                  Synthetic fabrics shed microplastics with every wash. These particles end up in soil and oceans, accumulating in the food chain and eventually in our bodies.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-medium text-[#d4c7b8] mb-3">Carbon Footprint</h3>
+                <p className="text-sm leading-relaxed text-[#a89d8f]">
+                  Fashion accounts for 10% of global carbon emissions. Fast fashion's rapid production cycles and global logistics multiply this impact exponentially.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-medium text-[#d4c7b8] mb-3">Textile Waste</h3>
+                <p className="text-sm leading-relaxed text-[#a89d8f]">
+                  Massive landfills overflow with textiles that take decades to decompose. Incinerating textiles releases toxic fumes into the atmosphere.
+                </p>
+              </div>
+            </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* SECTION 3: The Problem of Waste */}
+      <section id="waste" className="relative px-4 py-20 sm:px-6 md:px-10 lg:px-16">
+        <div className="mx-auto max-w-6xl">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: 0.85, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-            className="museum-panel"
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8 }}
           >
-            <p className="text-sm leading-8 text-[#e2ddd2]">
-              Without specs and explicit QA, software work turns into oral history. Priorities drift, AI prompts become vague, and decisions vanish between sessions.
+            <p className="exhibit-label mb-6">Room Three · Waste</p>
+            <h2 className="exhibit-heading mb-8 text-[clamp(1.8rem,4.5vw,2.8rem)] leading-[1.2]">
+              The Landfill Crisis
+            </h2>
+            <p className="max-w-3xl text-base leading-relaxed text-[#cfc8b8] mb-8">
+              Global clothing production doubled between 2000 and 2014. Meanwhile, the average consumer throws away 81 pounds of clothing every year. Fashion is now the world's largest employer of textile waste.
+            </p>
+            <p className="max-w-3xl text-base leading-relaxed text-[#cfc8b8]">
+              In developing countries, donated "fast fashion" from wealthy nations has destroyed local textile industries, creating environmental dumping grounds and exploitative labor economies.
             </p>
           </motion.div>
         </div>
       </section>
 
-      <section id="shift" className="relative px-5 py-20 sm:px-8 md:px-12 lg:px-16">
-        <div className="mx-auto w-full max-w-7xl rounded-[2rem] border border-white/12 bg-white/[0.03] p-6 shadow-[0_30px_80px_rgba(0,0,0,0.45)] backdrop-blur-[1px] sm:p-8 lg:p-10">
-          <motion.p
-            initial={{ opacity: 0, y: 26 }}
+      {/* SECTION 4: Upcycling as Solution */}
+      <section id="upcycling" className="relative px-4 py-20 sm:px-6 md:px-10 lg:px-16 bg-[#15100d]/40">
+        <div className="mx-auto max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.45 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="museum-plaque"
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8 }}
           >
-            Exhibit II · The Shift
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 26 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.45 }}
-            transition={{ duration: 0.8, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-            className="museum-title mt-6 max-w-5xl text-[clamp(1.9rem,6vw,4rem)] leading-[0.95]"
-          >
-            Replace improvised execution with an intentional chain: Spec, Sprint, QA, Implementation.
-          </motion.h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {["Write Spec", "Bound Sprint", "Review QA", "Ship With Evidence"].map((item, index) => (
-              <motion.article
-                key={item}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.4 }}
-                transition={{ duration: 0.6, delay: 0.08 * index, ease: [0.22, 1, 0.36, 1] }}
-                className="rounded-2xl border border-white/15 bg-black/25 px-4 py-5"
-              >
-                <p className="text-xs uppercase tracking-[0.18em] text-[#b7b0a1]">Step {index + 1}</p>
-                <h3 className="mt-2 text-xl leading-tight text-[#f4f0e7]">{item}</h3>
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="process" className="relative px-5 py-20 sm:px-8 md:px-12 lg:px-16">
-        <div className="mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-          <div className="lg:sticky lg:top-20 lg:h-fit">
-            <p className="museum-plaque">Exhibit III · Interactive Process</p>
-            <h2 className="museum-title mt-5 text-[clamp(2rem,6vw,3.8rem)] leading-[0.92]">
-              Scroll through the operating model like a guided gallery wall.
+            <p className="exhibit-label mb-6">Room Four · Solution</p>
+            <h2 className="exhibit-heading mb-8 text-[clamp(1.8rem,4.5vw,2.8rem)] leading-[1.2]">
+              Upcycling: Reclaiming Materials, Reclaiming Value
             </h2>
-          </div>
-
-          <div className="space-y-5">
-            {[
-              { label: "Planning", detail: "Write explicit scope, constraints, and verification language before any code change." },
-              { label: "Pre-Implementation QA", detail: "Pressure-test the artifact for ambiguity, risks, and missing boundaries." },
-              { label: "Implementation", detail: "Execute only the bounded sprint and avoid unrelated refactors." },
-              { label: "Post-Implementation QA", detail: "Validate behavior, confirm criteria, and record evidence for auditability." }
-            ].map((phase, index) => (
-              <motion.article
-                key={phase.label}
-                initial={{ opacity: 0, x: 34 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.35 }}
-                transition={{ duration: 0.65, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                className="museum-panel border-l-2 border-l-[#d3b88f]"
-              >
-                <p className="text-xs uppercase tracking-[0.18em] text-[#b7b0a1]">Phase {index + 1}</p>
-                <h3 className="mt-2 text-2xl leading-tight text-[#f5f1e8]">{phase.label}</h3>
-                <p className="mt-3 text-sm leading-7 text-[#ddd7cb]">{phase.detail}</p>
-              </motion.article>
-            ))}
-          </div>
+            <p className="max-w-3xl text-base leading-relaxed text-[#cfc8b8] mb-8">
+              Upcycling transforms damaged or outdated garments into new pieces of equal or greater value. Instead of disposal, we see restoration. Instead of pollution, we see creation.
+            </p>
+            <div className="grid gap-6 md:grid-cols-2">
+              {[
+                {
+                  title: "Repair & Mend",
+                  desc: "Extend the life of beloved pieces through thoughtful repair. Every mended garment is waste prevented."
+                },
+                {
+                  title: "Reimagine & Redesign",
+                  desc: "Transform old textiles into new designs. What was discard becomes art."
+                },
+                {
+                  title: "Donate & Share",
+                  desc: "Give clothing a second life in another person's closet. Communities thrive when consumption becomes circular."
+                },
+                {
+                  title: "Educate & Inspire",
+                  desc: "Share the story of sustainable fashion. Change begins with awareness."
+                }
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.35 }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  className="border border-[#6b6057]/40 rounded-lg p-6 bg-[#1a1410]/30"
+                >
+                  <h3 className="text-lg font-medium text-[#d4c7b8] mb-2">{item.title}</h3>
+                  <p className="text-sm text-[#a89d8f]">{item.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      <section id="philosophy" className="relative px-5 py-20 sm:px-8 md:px-12 lg:px-16">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto w-full max-w-7xl rounded-[2.2rem] border border-white/15 bg-[linear-gradient(160deg,rgba(17,21,27,0.92),rgba(25,30,38,0.86))] p-7 shadow-[0_36px_90px_rgba(0,0,0,0.48)] sm:p-10"
-        >
-          <p className="museum-plaque">Exhibit IV · Philosophy</p>
-          <h2 className="museum-title mt-5 text-[clamp(2rem,6.4vw,4.3rem)] leading-[0.92]">
-            Precision is creative freedom.
-          </h2>
-          <p className="mt-5 max-w-3xl text-base leading-8 text-[#d6d1c6] sm:text-lg">
-            Structure is not bureaucracy. It is curation. It gives teams and AI assistants a shared map, so decisions stay intentional, recoverable, and aligned with product purpose.
-          </p>
-        </motion.div>
-      </section>
-
-      <section id="cta" className="relative px-5 pb-24 pt-20 sm:px-8 md:px-12 lg:px-16">
-        <div className="mx-auto flex w-full max-w-7xl flex-col items-start gap-6 border-t border-white/12 pt-12">
-          <p className="museum-plaque">Final Gallery · Call To Action</p>
-          <h2 className="museum-title max-w-5xl text-[clamp(2rem,7vw,5rem)] leading-[0.9]">
-            Turn your next product cycle into an auditable exhibition of decisions.
-          </h2>
-          <p className="max-w-3xl text-base leading-8 text-[#d9d3c8] sm:text-lg">
-            Start with a spec, shape one bounded sprint, and let QA guide every implementation pass.
-          </p>
-          <div className="flex flex-wrap gap-3 pt-1 text-xs uppercase tracking-[0.15em]">
-            <button
-              type="button"
-              onClick={() => scrollToSection("hero")}
-              className="inline-flex items-center justify-center border border-[#d4be9c]/80 px-5 py-3 text-[#f2ede2] transition hover:bg-[#d4be9c]/10"
-            >
-              Return To Entrance
-            </button>
-            <a
-              href="#problem"
-              className="inline-flex items-center justify-center border border-white/20 px-5 py-3 text-[#ded7c8] transition hover:bg-white/10"
-            >
-              Replay Story
-            </a>
-          </div>
+      {/* SECTION 5: Call to Action */}
+      <section id="action" className="relative px-4 py-24 sm:px-6 md:px-10 lg:px-16 border-t border-[#6b6057]/20">
+        <div className="mx-auto max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
+          >
+            <h2 className="exhibit-heading mb-6 text-[clamp(1.8rem,4.5vw,2.8rem)] leading-[1.2]">
+              Your Next Choice Matters
+            </h2>
+            <p className="mx-auto max-w-2xl text-base leading-relaxed text-[#cfc8b8] mb-8">
+              Every purchase is a vote. Every repair is an act of resistance against overproduction. Every conversation spreads awareness. The thread connecting all of us to this revolution is visible—we just need to trace it.
+            </p>
+            <div className="flex justify-center gap-4 flex-wrap">
+              <button
+                type="button"
+                onClick={() => scrollToSection("hero")}
+                className="inline-flex items-center justify-center border border-[#8b7d6b] px-6 py-3 text-sm font-medium transition hover:bg-[#8b7d6b]/15"
+              >
+                Return To Entrance
+              </button>
+              <a
+                href="#cost"
+                className="inline-flex items-center justify-center border border-[#6b6057] px-6 py-3 text-sm font-medium text-[#b8b0a0] transition hover:bg-white/5"
+              >
+                Explore Again
+              </a>
+            </div>
+          </motion.div>
         </div>
       </section>
     </main>
