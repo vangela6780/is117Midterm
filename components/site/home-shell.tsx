@@ -7,17 +7,20 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 
 const sectionIds = ["hero", "cost", "impact", "overconsumption", "waste", "upcycling", "action"];
 
+const repoBasePath = process.env.NODE_ENV === "production" ? "/is117Midterm" : "";
+const withBasePath = (path: string) => `${repoBasePath}${path}`;
+
 const IMAGES = {
-  hero: "/images/exhibit/hero.jpg",
-  costFactory: "/images/exhibit/cost-factory.jpg",
-  costLandfill: "/images/exhibit/cost-landfill.jpg",
-  impact: "/images/exhibit/impact-pollution.jpg",
-  overconsumption: "/images/exhibit/overconsumption.jpg",
-  waste: "/images/exhibit/waste-landfill.jpg",
-  upcycleRepair: "/images/exhibit/upcycle-repair.jpg",
-  upcycleRedesign: "/images/exhibit/upcycle-redesign.jpg",
-  upcycleDonate: "/images/exhibit/upcycle-donate.jpg",
-  upcycleEducate: "/images/exhibit/upcycle-educate.jpg"
+  hero: withBasePath("/images/exhibit/hero.jpg"),
+  costFactory: withBasePath("/images/exhibit/cost-factory.jpg"),
+  costLandfill: withBasePath("/images/exhibit/cost-landfill.jpg"),
+  impact: withBasePath("/images/exhibit/impact-pollution.jpg"),
+  overconsumption: withBasePath("/images/exhibit/overconsumption.jpg"),
+  waste: withBasePath("/images/exhibit/waste-landfill.jpg"),
+  upcycleRepair: withBasePath("/images/exhibit/upcycle-repair.jpg"),
+  upcycleRedesign: withBasePath("/images/exhibit/upcycle-redesign.jpg"),
+  upcycleDonate: withBasePath("/images/exhibit/upcycle-donate.jpg"),
+  upcycleEducate: withBasePath("/images/exhibit/upcycle-educate.jpg")
 };
 
 type ExhibitImageProps = {
