@@ -185,15 +185,65 @@ export function HomeShell() {
         </div>
       </section>
 
-      <section id="waste" className="relative min-h-[88vh] overflow-hidden px-4 py-24 sm:px-6 md:px-10 lg:px-16">
-        <div className="absolute inset-0 -z-10">
+      <section id="waste" className="relative overflow-hidden px-4 py-24 sm:px-6 md:px-10 lg:px-16">
+        {/* Full-bleed background image — top half of section */}
+        <div className="absolute inset-x-0 top-0 h-[70%] -z-10">
           <ExhibitImage src={IMAGES.waste} alt="Wide landscape of textile landfill and environmental damage" sizes="100vw" className="h-full w-full" caption="Global Waste Field" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[rgba(20,14,10,0.86)] via-[rgba(20,14,10,0.62)] to-[rgba(20,14,10,0.3)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[rgba(20,14,10,0.45)] via-[rgba(20,14,10,0.68)] to-[#15100d]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[rgba(20,14,10,0.7)] via-transparent to-transparent" />
         </div>
-        <div className="mx-auto max-w-4xl">
+        <div className="absolute inset-x-0 bottom-0 -z-10 h-[35%] bg-[#15100d]" />
+
+        <div className="mx-auto max-w-5xl">
           <p className="exhibit-label mb-6">Room Four · Waste at Scale</p>
           <h2 className="exhibit-heading mb-6 max-w-3xl">The Landfill Is the Final Collection</h2>
-          <p className="max-w-3xl text-[0.95rem] leading-relaxed text-[#e7dccd] sm:text-base">When global production doubles and product lifespans shrink, disposal sites become the true map of the fashion industry. The environmental burden is displaced, not solved.</p>
+          <p className="mb-16 max-w-3xl text-[0.95rem] leading-relaxed text-[#e7dccd] sm:text-base">
+            When global production doubles and product lifespans shrink, disposal sites become the true map of the fashion industry. The environmental burden is displaced, not solved — it is exported to communities and ecosystems with the least power to refuse it.
+          </p>
+
+          {/* Stat grid */}
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 mb-16">
+            {[
+              { figure: "92M", unit: "tonnes", label: "textile waste generated globally each year" },
+              { figure: "73%", unit: "of clothing", label: "ends up incinerated or in landfill" },
+              { figure: "500K", unit: "tonnes", label: "of microfibers shed into oceans annually" },
+              { figure: "200+", unit: "years", label: "for synthetic fabrics to decompose in soil" },
+            ].map((stat) => (
+              <div key={stat.figure} className="rounded-xl border border-[#6b6057]/40 bg-[rgba(22,16,13,0.75)] px-5 py-6 text-center backdrop-blur-sm">
+                <p className="text-3xl font-bold tracking-tight text-[#e7dccd] sm:text-4xl">{stat.figure}</p>
+                <p className="mt-0.5 text-[10px] uppercase tracking-[0.14em] text-[#9b8f82]">{stat.unit}</p>
+                <p className="mt-2 text-[0.72rem] leading-snug text-[#b5a898]">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Two-column detail blocks */}
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <div className="rounded-xl border border-[#6b6057]/35 bg-[rgba(22,16,13,0.6)] p-6">
+              <h3 className="mb-3 text-base font-semibold uppercase tracking-[0.1em] text-[#c9bdb0]">The Export Economy</h3>
+              <p className="text-sm leading-relaxed text-[#a89d8f]">
+                Wealthy nations offload their excess clothing to markets in Ghana, Chile, and Bangladesh. The Atacama Desert in Chile now holds tens of thousands of tonnes of discarded Western garments — visible from orbit. These are not donations. They are the overflow of a system that overproduces by design.
+              </p>
+            </div>
+            <div className="rounded-xl border border-[#6b6057]/35 bg-[rgba(22,16,13,0.6)] p-6">
+              <h3 className="mb-3 text-base font-semibold uppercase tracking-[0.1em] text-[#c9bdb0]">The Incineration Pipeline</h3>
+              <p className="text-sm leading-relaxed text-[#a89d8f]">
+                Major brands including H&M and Burberry have been documented incinerating unsold stock rather than discounting or donating it — protecting brand value at the cost of the atmosphere. Burning synthetic textiles releases toxic dioxins and greenhouse gases into communities already living with the consequences of fast fashion's production chain.
+              </p>
+            </div>
+            <div className="rounded-xl border border-[#6b6057]/35 bg-[rgba(22,16,13,0.6)] p-6">
+              <h3 className="mb-3 text-base font-semibold uppercase tracking-[0.1em] text-[#c9bdb0]">Microfiber Saturation</h3>
+              <p className="text-sm leading-relaxed text-[#a89d8f]">
+                Every wash cycle releases hundreds of thousands of synthetic microfibers too small to be caught by filtration systems. They accumulate in ocean sediment, freshwater fish, drinking water, and human blood. Microplastics derived from synthetic textiles have now been detected in human placentas and lung tissue.
+              </p>
+            </div>
+            <div className="rounded-xl border border-[#6b6057]/35 bg-[rgba(22,16,13,0.6)] p-6">
+              <h3 className="mb-3 text-base font-semibold uppercase tracking-[0.1em] text-[#c9bdb0]">No Neutral Choice</h3>
+              <p className="text-sm leading-relaxed text-[#a89d8f]">
+                Recycling rates for textiles remain below 1% globally. The infrastructure for fiber-to-fiber recycling is nascent and woefully underfunded compared to production capacity. Every garment purchased today carries a near-certain landfill destiny unless the systems that govern its disposal fundamentally change.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
