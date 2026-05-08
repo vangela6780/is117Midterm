@@ -170,7 +170,7 @@ export function HomeShell() {
               >
                 <div className="exhibit-gallery-item-image bg-gradient-to-br from-[#3a3228] to-[#1a1410]">
                   {/* Adobe Stock: textile waste */}
-                  <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%232d2622%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-family=%22Arial%22 font-size=%2216%22 fill=%22%238b7d6b%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EAdobe Stock: Textile Waste%3C/text%3E%3C/svg%3E" alt="Textile waste from fast fashion production - Adobe Stock" />
+                  <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&q=80" alt="Textile waste from fast fashion production" />
                 </div>
                 <div className="exhibit-gallery-item-caption">
                   <h3>Production Waste</h3>
@@ -187,7 +187,7 @@ export function HomeShell() {
               >
                 <div className="exhibit-gallery-item-image bg-gradient-to-br from-[#3a3228] to-[#1a1410]">
                   {/* Adobe Stock: clothing waste */}
-                  <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%232d2622%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-family=%22Arial%22 font-size=%2216%22 fill=%22%238b7d6b%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EAdobe Stock: Clothing Waste%3C/text%3E%3C/svg%3E" alt="Discarded clothing waste - Adobe Stock" />
+                  <img src="https://images.unsplash.com/photo-1553882900-f2b06423ff66?w=800&q=80" alt="Discarded clothing waste in landfill" />
                 </div>
                 <div className="exhibit-gallery-item-caption">
                   <h3>Consumer Disposal</h3>
@@ -225,7 +225,7 @@ export function HomeShell() {
         <div className="exhibit-split-section">
           {/* Image Side - Adobe Stock: ocean pollution, water waste */}
           <div className="exhibit-split-image bg-gradient-to-br from-[#3a3228] to-[#1a1410]">
-            <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22500%22%3E%3Crect fill=%22%232d2622%22 width=%22600%22 height=%22500%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-family=%22Arial%22 font-size=%2218%22 fill=%22%238b7d6b%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EAdobe Stock: Water Pollution %2B Microplastics%3C/text%3E%3C/svg%3E" alt="Water pollution from textile dyes - Adobe Stock" />
+            <img src="https://images.unsplash.com/photo-1532996122724-8f3c2cd83c5d?w=1000&q=80" alt="Water pollution from textile production" />
           </div>
 
           {/* Content Side */}
@@ -317,8 +317,8 @@ export function HomeShell() {
             transition={{ duration: 0.8 }}
           >
             <img 
-              src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect fill=%22%232d2622%22 width=%22800%22 height=%22500%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-family=%22Arial%22 font-size=%2220%22 fill=%22%238b7d6b%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EAdobe Stock: Landfill Clothes %2B Textile Waste%3C/text%3E%3C/svg%3E" 
-              alt="Massive landfill filled with discarded textiles - Adobe Stock" 
+              src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=1000&q=80" 
+              alt="Massive landfill filled with discarded textiles" 
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[rgba(26,20,16,0.5)] to-transparent" />
           </motion.div>
@@ -342,28 +342,28 @@ export function HomeShell() {
               Upcycling transforms damaged or outdated garments into new pieces of equal or greater value. Instead of disposal, we see restoration. Instead of pollution, we see creation.
             </p>
 
-            {/* Upcycling Solutions Grid - Adobe Stock: upcycled fashion, sustainable materials, creative reuse */}
+            {/* Upcycling Solutions Grid */}
             <div className="grid gap-6 md:grid-cols-2">
               {[
                 {
                   title: "Repair & Mend",
                   desc: "Extend the life of beloved pieces through thoughtful repair. Every mended garment is waste prevented.",
-                  image: "Adobe Stock: Hands-on Repair"
+                  image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500&q=80"
                 },
                 {
                   title: "Reimagine & Redesign",
                   desc: "Transform old textiles into new designs. What was discard becomes art.",
-                  image: "Adobe Stock: Sustainable Fashion Design"
+                  image: "https://images.unsplash.com/photo-1551028719-00167b16ebc5?w=500&q=80"
                 },
                 {
                   title: "Donate & Share",
                   desc: "Give clothing a second life in another person's closet. Communities thrive when consumption becomes circular.",
-                  image: "Adobe Stock: Clothing Donation"
+                  image: "https://images.unsplash.com/photo-1532996122724-8f3c2cd83c5d?w=500&q=80"
                 },
                 {
                   title: "Educate & Inspire",
                   desc: "Share the story of sustainable fashion. Change begins with awareness.",
-                  image: "Adobe Stock: Fashion Education"
+                  image: "https://images.unsplash.com/photo-1455390883262-2f4abb387daa?w=500&q=80"
                 }
               ].map((item, i) => (
                 <motion.div
@@ -376,8 +376,8 @@ export function HomeShell() {
                 >
                   <div className="exhibit-gallery-item-image bg-gradient-to-br from-[#3a3228] to-[#1a1410]">
                     <img 
-                      src={`data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%232d2622%22 width=%22400%22 height=%22280%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-family=%22Arial%22 font-size=%2214%22 fill=%22%238b7d6b%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E${encodeURIComponent(item.image)}%3C/text%3E%3C/svg%3E`}
-                      alt={`${item.title} - ${item.image}`} 
+                      src={item.image}
+                      alt={item.title} 
                     />
                   </div>
                   <div className="exhibit-gallery-item-caption">
