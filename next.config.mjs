@@ -1,4 +1,4 @@
-const repoName = "is117Midterm";
+const repoName = "museum-site";
 const isGitHubPagesBuild = process.env.GITHUB_ACTIONS === "true";
 
 /** @type {import('next').NextConfig} */
