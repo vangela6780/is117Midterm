@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 
-export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
+// This route is treated as static during GitHub Pages export
+// In production, it requires a Node.js runtime and will not be served
+export const dynamic = "force-static";
 export const revalidate = 0;
 
 const encoder = new TextEncoder();
