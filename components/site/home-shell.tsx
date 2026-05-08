@@ -372,7 +372,6 @@ export function HomeShell() {
             <div className="flex flex-wrap items-center gap-3">
               <button type="button" onClick={() => scrollToSection("cost")} className="inline-flex items-center justify-center border border-[#8b7d6b] bg-[rgba(139,125,107,0.12)] px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] transition hover:bg-[#8b7d6b]/20">Begin The Exhibit</button>
               <button type="button" onClick={() => scrollToSection("login")} className="inline-flex items-center justify-center border border-[#6b6057] px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-[#c5bbac] transition hover:bg-white/5">Member Login</button>
-              <Link href="/hero" className="inline-flex items-center justify-center border border-[#6b6057] px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-[#b8b0a0] transition hover:bg-white/5">Original Exhibition</Link>
             </div>
           </div>
 
