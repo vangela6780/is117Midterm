@@ -514,68 +514,74 @@ export function HomeShell() {
             </div>
           </div>
 
-          <div className="mt-16 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-            <div className="lg:sticky lg:top-24 lg:self-start">
-              <div className="rounded-xl border border-[#6b6057]/45 bg-[rgba(18,13,10,0.72)] p-5">
-                <p className="text-[10px] uppercase tracking-[0.15em] text-[#a09485]">Interactive Logistics Graphic</p>
-                <h3 className="mt-2 font-[var(--font-display)] text-xl text-[#ddd2c2]">Waste does not stop. It travels.</h3>
-                <p className="mt-3 text-sm leading-relaxed text-[#ad9f90]">Routes below represent transfer corridors from consumption centers to overflow landscapes.</p>
-                <div className="mt-4">
-                  <RouteMapGraphic />
-                </div>
+          <div className="mt-16 space-y-8">
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.35 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="rounded-xl border border-[#6b6057]/45 bg-[rgba(18,13,10,0.72)] p-5 sm:p-6"
+            >
+              <p className="text-[10px] uppercase tracking-[0.15em] text-[#a09485]">Interactive Logistics Graphic</p>
+              <h3 className="mt-2 font-[var(--font-display)] text-xl text-[#ddd2c2]">Waste does not stop. It travels.</h3>
+              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-[#ad9f90]">Routes below represent transfer corridors from consumption centers to overflow landscapes.</p>
+              <div className="mt-4">
+                <RouteMapGraphic />
               </div>
-            </div>
+            </motion.div>
 
-            <div className="space-y-8">
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
               {wasteStoryPanels.map((panel, index) => (
                 <motion.article
                   key={panel.id}
-                  initial={{ opacity: 0, y: 28 }}
+                  initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.35 }}
-                  transition={{ duration: 0.75, ease: "easeOut" }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.65, ease: "easeOut", delay: index * 0.08 }}
+                  whileHover={{ y: -4 }}
                   className={`overflow-hidden rounded-xl border border-[#6b6057]/40 ${panel.id === "no-neutral-choice" ? "bg-[rgba(19,13,10,0.78)]" : "bg-[rgba(22,16,13,0.62)]"}`}
                 >
-                  <div className="grid gap-0 md:grid-cols-[1fr_1.05fr]">
-                    <div className="relative h-60 md:h-full">
-                      <ExhibitImage src={panel.image} alt={panel.title} sizes="(max-width: 768px) 100vw, 45vw" className="h-full w-full" caption={panel.caption} />
-                      {panel.id === "incineration-pipeline" ? <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_82%,rgba(222,114,66,0.3),transparent_46%),linear-gradient(to_top,rgba(11,8,7,0.78),rgba(11,8,7,0.22))]" /> : null}
-                      {panel.id === "microfiber-saturation" ? (
-                        <div className="absolute inset-0">
-                          {microfiberParticles.map((particle, microIdx) => (
-                            <motion.span
-                              key={`micro-${microIdx}`}
-                              className="absolute h-1.5 w-1.5 rounded-full bg-[#d3deeb]/70"
-                              style={{ left: particle.left, top: particle.top }}
-                              animate={{ y: [0, -14, 0], opacity: [0.2, 0.78, 0.2] }}
-                              transition={{ duration: particle.duration, repeat: Number.POSITIVE_INFINITY, delay: particle.delay, ease: "easeInOut" }}
-                            />
-                          ))}
-                          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_60%,rgba(152,193,216,0.2),transparent_48%)]" />
-                        </div>
-                      ) : null}
-                    </div>
-                    <div className="p-6 sm:p-7">
-                      <div className="inline-flex items-center gap-2 rounded-full border border-[#6b6057]/55 px-3 py-1 text-[10px] uppercase tracking-[0.14em] text-[#a69888]">
-                        <StoryIcon kind={panel.icon} />
-                        {panel.kicker}
-                      </div>
-                      <h3 className="mt-4 font-[var(--font-display)] text-[1.35rem] leading-tight text-[#ddd2c2]">{panel.title}</h3>
-                      <div className="mt-4 space-y-3 text-sm leading-relaxed text-[#b2a596]">
-                        {panel.notes.map((note) => (
-                          <p key={note}>{note}</p>
+                  <div className="relative h-52">
+                    <ExhibitImage src={panel.image} alt={panel.title} sizes="(max-width: 1024px) 100vw, 48vw" className="h-full w-full" caption={panel.caption} />
+                    {panel.id === "incineration-pipeline" ? <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_82%,rgba(222,114,66,0.3),transparent_46%),linear-gradient(to_top,rgba(11,8,7,0.78),rgba(11,8,7,0.22))]" /> : null}
+                    {panel.id === "microfiber-saturation" ? (
+                      <div className="absolute inset-0">
+                        {microfiberParticles.map((particle, microIdx) => (
+                          <motion.span
+                            key={`micro-${microIdx}`}
+                            className="absolute h-1.5 w-1.5 rounded-full bg-[#d3deeb]/70"
+                            style={{ left: particle.left, top: particle.top }}
+                            animate={{ y: [0, -14, 0], opacity: [0.2, 0.78, 0.2] }}
+                            transition={{ duration: particle.duration, repeat: Number.POSITIVE_INFINITY, delay: particle.delay, ease: "easeInOut" }}
+                          />
                         ))}
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_60%,rgba(152,193,216,0.2),transparent_48%)]" />
                       </div>
-                      <p className={`mt-5 border-l pl-3 text-xs leading-relaxed ${panel.id === "no-neutral-choice" ? "border-[#bf8f5a] text-[#d8be99]" : "border-[#6b6057]/55 text-[#9d9080]"}`}>
-                        {panel.evidence}
-                      </p>
-                      {index === 0 ? (
-                        <div className="mt-4 flex flex-wrap gap-2 text-[10px] uppercase tracking-[0.13em] text-[#a49788]">
-                          <span className="rounded-full border border-[#6b6057]/55 px-2 py-1">Europe → West Africa</span>
-                          <span className="rounded-full border border-[#6b6057]/55 px-2 py-1">North America → Chile</span>
-                        </div>
-                      ) : null}
+                    ) : null}
+                  </div>
+                  <div className="p-6">
+                    <div className="inline-flex items-center gap-2 rounded-full border border-[#6b6057]/55 px-3 py-1 text-[10px] uppercase tracking-[0.14em] text-[#a69888]">
+                      <StoryIcon kind={panel.icon} />
+                      {panel.kicker}
                     </div>
+                    <h3 className="mt-4 font-[var(--font-display)] text-[1.3rem] leading-tight text-[#ddd2c2]">{panel.title}</h3>
+                    <ul className="mt-4 space-y-2 text-sm leading-relaxed text-[#b2a596]">
+                      {panel.notes.map((note) => (
+                        <li key={note} className="flex gap-2">
+                          <span aria-hidden className="mt-[0.42rem] h-1.5 w-1.5 rounded-full bg-[#8f8273]" />
+                          <span>{note}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <p className={`mt-5 border-l pl-3 text-xs leading-relaxed ${panel.id === "no-neutral-choice" ? "border-[#bf8f5a] text-[#d8be99]" : "border-[#6b6057]/55 text-[#9d9080]"}`}>
+                      {panel.evidence}
+                    </p>
+                    {index === 0 ? (
+                      <div className="mt-4 flex flex-wrap gap-2 text-[10px] uppercase tracking-[0.13em] text-[#a49788]">
+                        <span className="rounded-full border border-[#6b6057]/55 px-2 py-1">Europe → West Africa</span>
+                        <span className="rounded-full border border-[#6b6057]/55 px-2 py-1">North America → Chile</span>
+                      </div>
+                    ) : null}
                   </div>
                 </motion.article>
               ))}
