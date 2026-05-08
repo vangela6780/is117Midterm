@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { type FormEvent, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
-const sectionIds = ["hero", "cost", "impact", "overconsumption", "waste", "upcycling", "action"];
+const sectionIds = ["hero", "cost", "impact", "overconsumption", "waste", "upcycling", "login", "action"];
 
 const repoBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const withBasePath = (path: string) => `${repoBasePath}${path}`;
@@ -310,6 +310,22 @@ export function HomeShell() {
   const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
   const heroOffset = useTransform(scrollYProgress, [0, 0.35], [0, reduceMotion ? 0 : -110]);
+  const [loginMessage, setLoginMessage] = useState("");
+
+  const handleLoginSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    const email = String(form.get("email") ?? "").trim();
+    const password = String(form.get("password") ?? "").trim();
+
+    if (!email || !password) {
+      setLoginMessage("Enter both email and password to continue.");
+      return;
+    }
+
+    setLoginMessage("Login request captured. Connect this form to your auth backend to activate sign in.");
+    event.currentTarget.reset();
+  };
 
   useEffect(() => {
     const onKeydown = (event: KeyboardEvent) => {
@@ -332,7 +348,7 @@ export function HomeShell() {
     <main id="main-content" className="fashion-exhibit relative min-h-screen overflow-x-clip bg-[#1a1410] text-[#e8dfd2]">
       <div aria-hidden className="fashion-grain" />
 
-      <section id="hero" className="relative flex min-h-[100svh] items-center overflow-hidden px-4 sm:px-6 md:px-10 lg:px-16">
+      <section id="hero" className="relative flex min-h-[92svh] items-center overflow-hidden px-4 sm:px-6 md:px-10 lg:px-16">
         <motion.div className="absolute inset-0 -z-10" style={{ y: heroOffset }}>
           <ExhibitImage
             src={IMAGES.hero}
@@ -342,61 +358,39 @@ export function HomeShell() {
             className="h-full w-full"
             caption="Entry Archive"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[rgba(19,13,9,0.14)] via-[rgba(19,13,9,0.58)] to-[rgba(19,13,9,0.9)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_32%,rgba(255,255,255,0.16),transparent_42%),radial-gradient(circle_at_84%_74%,rgba(128,157,173,0.12),transparent_45%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(17,12,9,0.68)_0%,rgba(17,12,9,0.28)_45%,rgba(17,12,9,0.12)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(112deg,rgba(16,12,9,0.84)_6%,rgba(16,12,9,0.46)_46%,rgba(16,12,9,0.74)_100%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_26%,rgba(191,157,109,0.16),transparent_42%)]" />
         </motion.div>
 
-        <div aria-hidden className="absolute inset-0 -z-[5]">
-          {microfiberParticles.map((particle, idx) => (
-            <motion.span
-              key={`hero-particle-${idx}`}
-              className="absolute h-1.5 w-1.5 rounded-full bg-[#d8cab7]/55 blur-[0.6px]"
-              style={{ left: particle.left, top: particle.top }}
-              animate={{ y: [0, -18, 0], opacity: [0.25, 0.7, 0.25] }}
-              transition={{ duration: particle.duration, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: particle.delay }}
-            />
-          ))}
-        </div>
-
-        <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-8 py-20 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+        <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-10 py-16 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
           <div>
             <p className="exhibit-label mb-5">Environmental Exhibit</p>
-            <h1 className="mb-5 max-w-3xl font-[var(--font-display)] text-[clamp(1.9rem,4.2vw,3.2rem)] leading-[1.08] tracking-[-0.01em] text-[#e8dfd2]">Every shirt has a cost. Every closet has a footprint.</h1>
-            <p className="mb-8 max-w-2xl text-[0.95rem] leading-relaxed text-[#d2c8ba] sm:text-[1rem]">
-              Walk through a cinematic evidence trail linking what we buy to what rivers, landfills, and communities are forced to carry.
+            <h1 className="mb-5 max-w-3xl font-[var(--font-display)] text-[clamp(1.9rem,4vw,3rem)] leading-[1.1] tracking-[-0.01em] text-[#ece2d5]">Fashion leaves traces long after trend cycles end.</h1>
+            <p className="mb-8 max-w-2xl text-[0.96rem] leading-relaxed text-[#d2c8ba] sm:text-[1rem]">
+              Enter a guided evidence route that connects clothing choices to extraction, pollution, and disposal.
             </p>
-            <div className="mb-10 flex flex-wrap items-center gap-3">
-              <button type="button" onClick={() => scrollToSection("cost")} className="inline-flex items-center justify-center border border-[#8b7d6b] px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] transition hover:bg-[#8b7d6b]/15">Begin The Exhibit</button>
+            <div className="flex flex-wrap items-center gap-3">
+              <button type="button" onClick={() => scrollToSection("cost")} className="inline-flex items-center justify-center border border-[#8b7d6b] bg-[rgba(139,125,107,0.12)] px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] transition hover:bg-[#8b7d6b]/20">Begin The Exhibit</button>
+              <button type="button" onClick={() => scrollToSection("login")} className="inline-flex items-center justify-center border border-[#6b6057] px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-[#c5bbac] transition hover:bg-white/5">Member Login</button>
               <Link href="/hero" className="inline-flex items-center justify-center border border-[#6b6057] px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-[#b8b0a0] transition hover:bg-white/5">Original Exhibition</Link>
-            </div>
-            <div className="grid max-w-xl grid-cols-1 gap-3 sm:grid-cols-2">
-              <div className="rounded-lg border border-[#6b6057]/45 bg-[rgba(20,14,11,0.62)] px-4 py-3">
-                <p className="text-[10px] uppercase tracking-[0.15em] text-[#9f9384]">Museum Label</p>
-                <p className="mt-1 text-sm text-[#d8cdbd]">Section route follows supply chain to disposal chain.</p>
-              </div>
-              <div className="rounded-lg border border-[#6b6057]/45 bg-[rgba(20,14,11,0.62)] px-4 py-3">
-                <p className="text-[10px] uppercase tracking-[0.15em] text-[#9f9384]">Exhibit Focus</p>
-                <p className="mt-1 text-sm text-[#d8cdbd]">Water use, exports, combustion, microplastic drift.</p>
-              </div>
             </div>
           </div>
 
-          <div className="hidden lg:block">
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 }}
-              className="ml-auto max-w-sm rounded-xl border border-[#6b6057]/55 bg-[rgba(20,14,11,0.72)] p-5 backdrop-blur-sm"
-            >
-              <p className="text-[10px] uppercase tracking-[0.16em] text-[#9f9384]">Floating Install Panel</p>
-              <h3 className="mt-2 font-[var(--font-display)] text-xl text-[#e3d8c8]">Landfill receives what marketing forgets.</h3>
-              <div className="mt-4 space-y-2 text-sm text-[#b9ad9e]">
-                <p>92M tonnes of textile waste per year.</p>
-                <p>Most synthetic fibers remain for centuries.</p>
-              </div>
-            </motion.div>
-          </div>
+          <motion.aside
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, ease: "easeOut", delay: 0.1 }}
+            className="rounded-xl border border-[#6b6057]/55 bg-[rgba(19,13,10,0.72)] p-5 backdrop-blur-sm"
+          >
+            <p className="text-[10px] uppercase tracking-[0.16em] text-[#9f9384]">Tonight’s Focus</p>
+            <h3 className="mt-2 font-[var(--font-display)] text-xl leading-tight text-[#e3d8c8]">From purchase to pollution in five rooms.</h3>
+            <div className="mt-4 grid grid-cols-3 gap-2 text-center text-[10px] uppercase tracking-[0.12em] text-[#b9ad9e]">
+              <div className="rounded-md border border-[#6b6057]/40 bg-[rgba(17,12,10,0.6)] px-2 py-2">Water</div>
+              <div className="rounded-md border border-[#6b6057]/40 bg-[rgba(17,12,10,0.6)] px-2 py-2">Waste</div>
+              <div className="rounded-md border border-[#6b6057]/40 bg-[rgba(17,12,10,0.6)] px-2 py-2">Action</div>
+            </div>
+            <p className="mt-4 text-sm leading-relaxed text-[#b8ac9d]">Use spacebar or scroll to move between rooms.</p>
+          </motion.aside>
 
           <button
             type="button"
@@ -610,6 +604,59 @@ export function HomeShell() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section id="login" className="relative border-t border-[#6b6057]/25 bg-[#14100d]/60 px-4 py-24 sm:px-6 md:px-10 lg:px-16">
+        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1fr_1fr] lg:items-start">
+          <div>
+            <p className="exhibit-label mb-5">Member Access</p>
+            <h2 className="exhibit-heading mb-5">Log In To Save Your Exhibition Path</h2>
+            <p className="max-w-xl text-[0.95rem] leading-relaxed text-[#cfc8b8] sm:text-base">
+              Sign in to bookmark rooms, save reflection notes, and continue your route across devices.
+            </p>
+          </div>
+
+          <motion.form
+            onSubmit={handleLoginSubmit}
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 0.65, ease: "easeOut" }}
+            className="rounded-xl border border-[#6b6057]/45 bg-[rgba(20,14,11,0.68)] p-6"
+          >
+            <div className="grid gap-4">
+              <label className="grid gap-2 text-sm text-[#d6cbbd]">
+                <span className="text-xs uppercase tracking-[0.13em] text-[#a79a8b]">Email</span>
+                <input
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  className="w-full border border-[#6b6057]/55 bg-[rgba(17,12,10,0.82)] px-3 py-3 text-sm text-[#e2d8ca] placeholder:text-[#8f8476]"
+                  placeholder="you@example.com"
+                />
+              </label>
+              <label className="grid gap-2 text-sm text-[#d6cbbd]">
+                <span className="text-xs uppercase tracking-[0.13em] text-[#a79a8b]">Password</span>
+                <input
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  className="w-full border border-[#6b6057]/55 bg-[rgba(17,12,10,0.82)] px-3 py-3 text-sm text-[#e2d8ca] placeholder:text-[#8f8476]"
+                  placeholder="Enter password"
+                />
+              </label>
+            </div>
+            <div className="mt-5 flex flex-wrap items-center gap-3">
+              <button type="submit" className="inline-flex items-center justify-center border border-[#8b7d6b] bg-[rgba(139,125,107,0.16)] px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] transition hover:bg-[#8b7d6b]/25">
+                Log In
+              </button>
+              <button type="button" onClick={() => setLoginMessage("Password reset flow can be connected to your auth provider.")} className="inline-flex items-center justify-center border border-[#6b6057] px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-[#b8b0a0] transition hover:bg-white/5">
+                Forgot Password
+              </button>
+            </div>
+            {loginMessage ? <p className="mt-4 text-sm leading-relaxed text-[#cdbfae]">{loginMessage}</p> : null}
+          </motion.form>
         </div>
       </section>
 
