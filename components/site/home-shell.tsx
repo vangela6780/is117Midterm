@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
 const sectionIds = ["hero", "cost", "impact", "overconsumption", "waste", "upcycling", "action"];
 
@@ -22,6 +22,109 @@ const IMAGES = {
   upcycleDonate: withBasePath("/images/exhibit/upcycle-donate.jpg"),
   upcycleEducate: withBasePath("/images/exhibit/upcycle-educate.jpg")
 };
+
+const wasteStats = [
+  {
+    id: "waste-volume",
+    value: 92,
+    suffix: "M",
+    unit: "tonnes",
+    label: "textile waste generated globally each year",
+    icon: "landfill" as const
+  },
+  {
+    id: "landfill-share",
+    value: 73,
+    suffix: "%",
+    unit: "of clothing",
+    label: "ends up incinerated or in landfill",
+    icon: "incineration" as const
+  },
+  {
+    id: "microfiber-shed",
+    value: 500,
+    suffix: "K",
+    unit: "tonnes",
+    label: "of microfibers shed into oceans annually",
+    icon: "fiber" as const
+  },
+  {
+    id: "decomposition",
+    value: 200,
+    suffix: "+",
+    unit: "years",
+    label: "for synthetic fabrics to decompose in soil",
+    icon: "globe" as const
+  }
+];
+
+const microfiberParticles = [
+  { left: "8%", top: "20%", delay: 0, duration: 6.2 },
+  { left: "28%", top: "66%", delay: 0.8, duration: 7 },
+  { left: "45%", top: "35%", delay: 1.2, duration: 5.5 },
+  { left: "62%", top: "72%", delay: 0.5, duration: 8.1 },
+  { left: "77%", top: "42%", delay: 1.5, duration: 6.7 },
+  { left: "91%", top: "28%", delay: 0.2, duration: 7.8 }
+];
+
+const wasteStoryPanels = [
+  {
+    id: "export-economy",
+    title: "The Export Economy",
+    kicker: "Route 01",
+    image: IMAGES.waste,
+    caption: "Chile and Ghana receive overflow by design",
+    icon: "route" as const,
+    notes: [
+      "High-income countries ship surplus textiles abroad as secondhand exports.",
+      "Receiving regions absorb bales far beyond resale demand, creating new landfill fronts.",
+      "Waste is not disappearing. It is being relocated to communities with fewer protections."
+    ],
+    evidence: "Documented hotspots include the Atacama Desert (Chile) and major resale overflow zones in Ghana."
+  },
+  {
+    id: "incineration-pipeline",
+    title: "The Incineration Pipeline",
+    kicker: "Route 02",
+    image: IMAGES.costFactory,
+    caption: "Unsold stock is often burned to preserve brand value",
+    icon: "fire" as const,
+    notes: [
+      "When discounting threatens brand positioning, unsold inventory is sometimes destroyed.",
+      "Combustion converts excess garments into atmospheric pollution within hours.",
+      "Nearby residents inherit the air burden of a pricing and logistics decision."
+    ],
+    evidence: "Incineration of synthetic textiles can release dioxins and greenhouse gases."
+  },
+  {
+    id: "microfiber-saturation",
+    title: "Microfiber Saturation",
+    kicker: "Route 03",
+    image: IMAGES.impact,
+    caption: "Invisible particles move from laundry to ocean to body",
+    icon: "droplet" as const,
+    notes: [
+      "Every wash of synthetic garments sheds microscopic plastic fibers.",
+      "Many particles bypass filtration and persist in waterways and food systems.",
+      "Scientists now detect textile-linked microplastics in human tissue."
+    ],
+    evidence: "Microfibers have been identified in marine sediment, drinking water, blood, and placental samples."
+  },
+  {
+    id: "no-neutral-choice",
+    title: "No Neutral Choice",
+    kicker: "Route 04",
+    image: IMAGES.hero,
+    caption: "Less than 1% of textiles are recycled into new garments",
+    icon: "hourglass" as const,
+    notes: [
+      "Most garments are designed for short life and difficult disassembly.",
+      "Recycling infrastructure lags far behind production growth.",
+      "Buying less and extending use remains the clearest immediate intervention."
+    ],
+    evidence: "Global fiber-to-fiber textile recycling remains below 1%."
+  }
+];
 
 type ExhibitImageProps = {
   src: string;
@@ -58,6 +161,127 @@ function ExhibitImage({ src, alt, priority = false, sizes, className = "", capti
       <div className="absolute inset-0 bg-gradient-to-t from-[rgba(16,12,9,0.72)] via-[rgba(16,12,9,0.18)] to-transparent" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_60%_20%,rgba(255,255,255,0.08),transparent_48%)]" />
       {caption ? <p className="absolute bottom-3 left-3 z-10 border border-[#6b6057]/50 bg-[rgba(20,14,11,0.7)] px-2 py-1 text-[10px] uppercase tracking-[0.18em] text-[#cfc8b8]">{caption}</p> : null}
+    </div>
+  );
+}
+
+type CounterProps = {
+  value: number;
+  suffix: string;
+};
+
+function AnimatedCounter({ value, suffix }: CounterProps) {
+  const ref = useRef<HTMLSpanElement | null>(null);
+  const inView = useInView(ref, { once: true, margin: "-20% 0px" });
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (!inView) {
+      return;
+    }
+    const duration = 1300;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCurrent(Math.round(value * eased));
+      if (progress < 1) {
+        requestAnimationFrame(tick);
+      }
+    };
+    const frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [inView, value]);
+
+  return <span ref={ref}>{current.toLocaleString()}{suffix}</span>;
+}
+
+function StatIcon({ kind }: { kind: "landfill" | "incineration" | "fiber" | "globe" }) {
+  const common = "h-5 w-5 text-[#d4c7b5]";
+  if (kind === "landfill") {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden className={common}>
+        <path d="M3 17h18" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M5 17 9 8h6l4 9" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M10 8V5h4v3" stroke="currentColor" strokeWidth="1.5" />
+      </svg>
+    );
+  }
+  if (kind === "incineration") {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden className={common}>
+        <path d="M12 4c1 2-1 3 0 5 1 1 3 2 3 5a3 3 0 1 1-6 0c0-2 2-3 2-5 0-1-1-2 1-5Z" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M5 19h14" stroke="currentColor" strokeWidth="1.5" />
+      </svg>
+    );
+  }
+  if (kind === "fiber") {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden className={common}>
+        <path d="M4 8c4 0 4 8 8 8s4-8 8-8" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M4 16c4 0 4-8 8-8s4 8 8 8" stroke="currentColor" strokeWidth="1.5" />
+      </svg>
+    );
+  }
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden className={common}>
+      <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M4 12h16M12 4c3 3 3 13 0 16M12 4c-3 3-3 13 0 16" stroke="currentColor" strokeWidth="1.5" />
+    </svg>
+  );
+}
+
+function StoryIcon({ kind }: { kind: "route" | "fire" | "droplet" | "hourglass" }) {
+  const common = "h-4 w-4 text-[#d4c7b5]";
+  if (kind === "route") {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden className={common}>
+        <path d="M4 6h6l3 4h7" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M4 18h8l2-3h6" stroke="currentColor" strokeWidth="1.5" />
+        <circle cx="4" cy="6" r="1.5" fill="currentColor" />
+        <circle cx="20" cy="18" r="1.5" fill="currentColor" />
+      </svg>
+    );
+  }
+  if (kind === "fire") {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden className={common}>
+        <path d="M12 4c1.2 1.7-.8 3.4 0 5 .9 1.6 3 2.3 3 5a3 3 0 1 1-6 0c0-2.2 2-3.2 2-5 0-1.1-.8-2.3 1-5Z" stroke="currentColor" strokeWidth="1.5" />
+      </svg>
+    );
+  }
+  if (kind === "droplet") {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden className={common}>
+        <path d="M12 4c3 4 5 6.4 5 9a5 5 0 1 1-10 0c0-2.6 2-5 5-9Z" stroke="currentColor" strokeWidth="1.5" />
+      </svg>
+    );
+  }
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden className={common}>
+      <path d="M8 4h8M8 20h8" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M9 4v5c0 2 6 2 6 0V4M15 20v-5c0-2-6-2-6 0v5" stroke="currentColor" strokeWidth="1.5" />
+    </svg>
+  );
+}
+
+function RouteMapGraphic() {
+  return (
+    <div className="relative h-44 rounded-lg border border-[#6b6057]/40 bg-[rgba(18,12,10,0.78)] p-4">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_25%,rgba(167,139,113,0.18),transparent_45%),radial-gradient(circle_at_80%_75%,rgba(138,169,182,0.14),transparent_42%)]" />
+      <svg viewBox="0 0 320 150" className="relative z-10 h-full w-full" aria-hidden>
+        <path d="M45 35C96 24 112 36 146 58C181 81 208 82 270 58" stroke="#b8aa97" strokeWidth="2" strokeDasharray="5 5" fill="none" />
+        <path d="M52 104C109 110 135 101 171 82C208 63 229 63 286 92" stroke="#9fb8c6" strokeWidth="2" strokeDasharray="5 6" fill="none" />
+        <circle cx="45" cy="35" r="5" fill="#d6c8b4" />
+        <circle cx="270" cy="58" r="5" fill="#d6c8b4" />
+        <circle cx="52" cy="104" r="5" fill="#8fb2c4" />
+        <circle cx="286" cy="92" r="5" fill="#8fb2c4" />
+      </svg>
+      <div className="relative z-10 mt-3 flex flex-wrap gap-2 text-[10px] uppercase tracking-[0.13em] text-[#9f9488]">
+        <span className="rounded-full border border-[#6b6057]/50 px-2 py-1">North Atlantic export routes</span>
+        <span className="rounded-full border border-[#6b6057]/50 px-2 py-1">South Pacific overflow routes</span>
+      </div>
     </div>
   );
 }
@@ -118,19 +342,71 @@ export function HomeShell() {
             className="h-full w-full"
             caption="Entry Archive"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[rgba(19,13,9,0.22)] via-[rgba(19,13,9,0.5)] to-[rgba(19,13,9,0.86)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[rgba(19,13,9,0.14)] via-[rgba(19,13,9,0.58)] to-[rgba(19,13,9,0.9)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_32%,rgba(255,255,255,0.16),transparent_42%),radial-gradient(circle_at_84%_74%,rgba(128,157,173,0.12),transparent_45%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(17,12,9,0.68)_0%,rgba(17,12,9,0.28)_45%,rgba(17,12,9,0.12)_100%)]" />
         </motion.div>
 
-        <div className="relative z-10 mx-auto w-full max-w-6xl py-20">
-          <p className="exhibit-label mb-6">Environmental Exhibit</p>
-          <h1 className="exhibit-headline mb-6 max-w-3xl">Every shirt has a cost.</h1>
-          <p className="mb-10 max-w-2xl text-[0.95rem] leading-relaxed text-[#d2c8ba] sm:text-base">
-            Fast fashion transforms into poisoned water, exhausted workers, and mountains of waste. This exhibit traces what happens after the closet.
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <button type="button" onClick={() => scrollToSection("cost")} className="inline-flex items-center justify-center border border-[#8b7d6b] px-6 py-3 text-xs font-medium uppercase tracking-[0.14em] transition hover:bg-[#8b7d6b]/15">Begin The Exhibit</button>
-            <Link href="/hero" className="inline-flex items-center justify-center border border-[#6b6057] px-6 py-3 text-xs font-medium uppercase tracking-[0.14em] text-[#b8b0a0] transition hover:bg-white/5">Original Exhibition</Link>
+        <div aria-hidden className="absolute inset-0 -z-[5]">
+          {microfiberParticles.map((particle, idx) => (
+            <motion.span
+              key={`hero-particle-${idx}`}
+              className="absolute h-1.5 w-1.5 rounded-full bg-[#d8cab7]/55 blur-[0.6px]"
+              style={{ left: particle.left, top: particle.top }}
+              animate={{ y: [0, -18, 0], opacity: [0.25, 0.7, 0.25] }}
+              transition={{ duration: particle.duration, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: particle.delay }}
+            />
+          ))}
+        </div>
+
+        <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-8 py-20 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+          <div>
+            <p className="exhibit-label mb-5">Environmental Exhibit</p>
+            <h1 className="mb-5 max-w-3xl font-[var(--font-display)] text-[clamp(1.9rem,4.2vw,3.2rem)] leading-[1.08] tracking-[-0.01em] text-[#e8dfd2]">Every shirt has a cost. Every closet has a footprint.</h1>
+            <p className="mb-8 max-w-2xl text-[0.95rem] leading-relaxed text-[#d2c8ba] sm:text-[1rem]">
+              Walk through a cinematic evidence trail linking what we buy to what rivers, landfills, and communities are forced to carry.
+            </p>
+            <div className="mb-10 flex flex-wrap items-center gap-3">
+              <button type="button" onClick={() => scrollToSection("cost")} className="inline-flex items-center justify-center border border-[#8b7d6b] px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] transition hover:bg-[#8b7d6b]/15">Begin The Exhibit</button>
+              <Link href="/hero" className="inline-flex items-center justify-center border border-[#6b6057] px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-[#b8b0a0] transition hover:bg-white/5">Original Exhibition</Link>
+            </div>
+            <div className="grid max-w-xl grid-cols-1 gap-3 sm:grid-cols-2">
+              <div className="rounded-lg border border-[#6b6057]/45 bg-[rgba(20,14,11,0.62)] px-4 py-3">
+                <p className="text-[10px] uppercase tracking-[0.15em] text-[#9f9384]">Museum Label</p>
+                <p className="mt-1 text-sm text-[#d8cdbd]">Section route follows supply chain to disposal chain.</p>
+              </div>
+              <div className="rounded-lg border border-[#6b6057]/45 bg-[rgba(20,14,11,0.62)] px-4 py-3">
+                <p className="text-[10px] uppercase tracking-[0.15em] text-[#9f9384]">Exhibit Focus</p>
+                <p className="mt-1 text-sm text-[#d8cdbd]">Water use, exports, combustion, microplastic drift.</p>
+              </div>
+            </div>
           </div>
+
+          <div className="hidden lg:block">
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 }}
+              className="ml-auto max-w-sm rounded-xl border border-[#6b6057]/55 bg-[rgba(20,14,11,0.72)] p-5 backdrop-blur-sm"
+            >
+              <p className="text-[10px] uppercase tracking-[0.16em] text-[#9f9384]">Floating Install Panel</p>
+              <h3 className="mt-2 font-[var(--font-display)] text-xl text-[#e3d8c8]">Landfill receives what marketing forgets.</h3>
+              <div className="mt-4 space-y-2 text-sm text-[#b9ad9e]">
+                <p>92M tonnes of textile waste per year.</p>
+                <p>Most synthetic fibers remain for centuries.</p>
+              </div>
+            </motion.div>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => scrollToSection("cost")}
+            className="absolute bottom-6 left-1/2 inline-flex -translate-x-1/2 items-center gap-2 border border-[#6b6057]/65 bg-[rgba(20,14,11,0.62)] px-3 py-2 text-[10px] uppercase tracking-[0.16em] text-[#c9beaf] transition hover:bg-[rgba(20,14,11,0.8)]"
+            aria-label="Scroll to next exhibit room"
+          >
+            Scroll
+            <span aria-hidden>↓</span>
+          </button>
         </div>
       </section>
 
@@ -186,62 +462,123 @@ export function HomeShell() {
       </section>
 
       <section id="waste" className="relative overflow-hidden px-4 py-24 sm:px-6 md:px-10 lg:px-16">
-        {/* Full-bleed background image — top half of section */}
-        <div className="absolute inset-x-0 top-0 h-[70%] -z-10">
+        <div className="absolute inset-x-0 top-0 h-[56%] -z-10">
           <ExhibitImage src={IMAGES.waste} alt="Wide landscape of textile landfill and environmental damage" sizes="100vw" className="h-full w-full" caption="Global Waste Field" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[rgba(20,14,10,0.45)] via-[rgba(20,14,10,0.68)] to-[#15100d]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[rgba(20,14,10,0.7)] via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[rgba(18,13,10,0.34)] via-[rgba(18,13,10,0.72)] to-[#15100d]" />
         </div>
-        <div className="absolute inset-x-0 bottom-0 -z-10 h-[35%] bg-[#15100d]" />
+        <div className="absolute inset-x-0 bottom-0 -z-10 h-[48%] bg-[#15100d]" />
 
-        <div className="mx-auto max-w-5xl">
-          <p className="exhibit-label mb-6">Room Four · Waste at Scale</p>
-          <h2 className="exhibit-heading mb-6 max-w-3xl">The Landfill Is the Final Collection</h2>
-          <p className="mb-16 max-w-3xl text-[0.95rem] leading-relaxed text-[#e7dccd] sm:text-base">
-            When global production doubles and product lifespans shrink, disposal sites become the true map of the fashion industry. The environmental burden is displaced, not solved — it is exported to communities and ecosystems with the least power to refuse it.
-          </p>
-
-          {/* Stat grid */}
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 mb-16">
-            {[
-              { figure: "92M", unit: "tonnes", label: "textile waste generated globally each year" },
-              { figure: "73%", unit: "of clothing", label: "ends up incinerated or in landfill" },
-              { figure: "500K", unit: "tonnes", label: "of microfibers shed into oceans annually" },
-              { figure: "200+", unit: "years", label: "for synthetic fabrics to decompose in soil" },
-            ].map((stat) => (
-              <div key={stat.figure} className="rounded-xl border border-[#6b6057]/40 bg-[rgba(22,16,13,0.75)] px-5 py-6 text-center backdrop-blur-sm">
-                <p className="text-3xl font-bold tracking-tight text-[#e7dccd] sm:text-4xl">{stat.figure}</p>
-                <p className="mt-0.5 text-[10px] uppercase tracking-[0.14em] text-[#9b8f82]">{stat.unit}</p>
-                <p className="mt-2 text-[0.72rem] leading-snug text-[#b5a898]">{stat.label}</p>
-              </div>
-            ))}
+        <div className="mx-auto max-w-6xl">
+          <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+            <div>
+              <p className="exhibit-label mb-5">Room Four · Waste at Scale</p>
+              <h2 className="mb-5 max-w-3xl font-[var(--font-display)] text-[clamp(1.55rem,2.5vw,2.2rem)] leading-[1.15] tracking-[-0.01em] text-[#e7dccd]">The Landfill Is the Final Collection</h2>
+              <p className="max-w-3xl text-[0.95rem] leading-relaxed text-[#d7ccbe] sm:text-base">
+                This room shifts from reading to evidence. Scroll through routes, smoke, and particles that show where clothing goes after trend cycles end.
+              </p>
+            </div>
+            <motion.aside
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="rounded-xl border border-[#6b6057]/45 bg-[rgba(18,13,10,0.68)] p-5 backdrop-blur-sm"
+            >
+              <p className="text-[10px] uppercase tracking-[0.15em] text-[#9f9384]">Curator Note</p>
+              <p className="mt-3 text-sm leading-relaxed text-[#d2c8ba]">
+                Disposal is not the end of the story. It is the point where responsibility is transferred to someone else.
+              </p>
+            </motion.aside>
           </div>
 
-          {/* Two-column detail blocks */}
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            <div className="rounded-xl border border-[#6b6057]/35 bg-[rgba(22,16,13,0.6)] p-6">
-              <h3 className="mb-3 text-base font-semibold uppercase tracking-[0.1em] text-[#c9bdb0]">The Export Economy</h3>
-              <p className="text-sm leading-relaxed text-[#a89d8f]">
-                Wealthy nations offload their excess clothing to markets in Ghana, Chile, and Bangladesh. The Atacama Desert in Chile now holds tens of thousands of tonnes of discarded Western garments — visible from orbit. These are not donations. They are the overflow of a system that overproduces by design.
-              </p>
+          <div className="mt-14">
+            <p className="mb-5 text-xs uppercase tracking-[0.16em] text-[#a89b8b]">Data Installation</p>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+              {wasteStats.map((stat, index) => (
+                <motion.article
+                  key={stat.id}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.45 }}
+                  transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.08 }}
+                  className="rounded-xl border border-[#6b6057]/40 bg-[linear-gradient(160deg,rgba(22,16,13,0.92),rgba(22,16,13,0.62))] px-5 py-5"
+                >
+                  <div className="mb-4 inline-flex items-center justify-center rounded-md border border-[#6b6057]/55 bg-[rgba(17,12,10,0.75)] p-2">
+                    <StatIcon kind={stat.icon} />
+                  </div>
+                  <p className="text-3xl font-semibold tracking-tight text-[#e7dccd] sm:text-[2rem]"><AnimatedCounter value={stat.value} suffix={stat.suffix} /></p>
+                  <p className="mt-1 text-[10px] uppercase tracking-[0.14em] text-[#9b8f82]">{stat.unit}</p>
+                  <p className="mt-2 text-[0.74rem] leading-snug text-[#b5a898]">{stat.label}</p>
+                </motion.article>
+              ))}
             </div>
-            <div className="rounded-xl border border-[#6b6057]/35 bg-[rgba(22,16,13,0.6)] p-6">
-              <h3 className="mb-3 text-base font-semibold uppercase tracking-[0.1em] text-[#c9bdb0]">The Incineration Pipeline</h3>
-              <p className="text-sm leading-relaxed text-[#a89d8f]">
-                Major brands including H&M and Burberry have been documented incinerating unsold stock rather than discounting or donating it — protecting brand value at the cost of the atmosphere. Burning synthetic textiles releases toxic dioxins and greenhouse gases into communities already living with the consequences of fast fashion's production chain.
-              </p>
+          </div>
+
+          <div className="mt-16 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="lg:sticky lg:top-24 lg:self-start">
+              <div className="rounded-xl border border-[#6b6057]/45 bg-[rgba(18,13,10,0.72)] p-5">
+                <p className="text-[10px] uppercase tracking-[0.15em] text-[#a09485]">Interactive Logistics Graphic</p>
+                <h3 className="mt-2 font-[var(--font-display)] text-xl text-[#ddd2c2]">Waste does not stop. It travels.</h3>
+                <p className="mt-3 text-sm leading-relaxed text-[#ad9f90]">Routes below represent transfer corridors from consumption centers to overflow landscapes.</p>
+                <div className="mt-4">
+                  <RouteMapGraphic />
+                </div>
+              </div>
             </div>
-            <div className="rounded-xl border border-[#6b6057]/35 bg-[rgba(22,16,13,0.6)] p-6">
-              <h3 className="mb-3 text-base font-semibold uppercase tracking-[0.1em] text-[#c9bdb0]">Microfiber Saturation</h3>
-              <p className="text-sm leading-relaxed text-[#a89d8f]">
-                Every wash cycle releases hundreds of thousands of synthetic microfibers too small to be caught by filtration systems. They accumulate in ocean sediment, freshwater fish, drinking water, and human blood. Microplastics derived from synthetic textiles have now been detected in human placentas and lung tissue.
-              </p>
-            </div>
-            <div className="rounded-xl border border-[#6b6057]/35 bg-[rgba(22,16,13,0.6)] p-6">
-              <h3 className="mb-3 text-base font-semibold uppercase tracking-[0.1em] text-[#c9bdb0]">No Neutral Choice</h3>
-              <p className="text-sm leading-relaxed text-[#a89d8f]">
-                Recycling rates for textiles remain below 1% globally. The infrastructure for fiber-to-fiber recycling is nascent and woefully underfunded compared to production capacity. Every garment purchased today carries a near-certain landfill destiny unless the systems that govern its disposal fundamentally change.
-              </p>
+
+            <div className="space-y-8">
+              {wasteStoryPanels.map((panel, index) => (
+                <motion.article
+                  key={panel.id}
+                  initial={{ opacity: 0, y: 28 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.35 }}
+                  transition={{ duration: 0.75, ease: "easeOut" }}
+                  className={`overflow-hidden rounded-xl border border-[#6b6057]/40 ${panel.id === "no-neutral-choice" ? "bg-[rgba(19,13,10,0.78)]" : "bg-[rgba(22,16,13,0.62)]"}`}
+                >
+                  <div className="grid gap-0 md:grid-cols-[1fr_1.05fr]">
+                    <div className="relative h-60 md:h-full">
+                      <ExhibitImage src={panel.image} alt={panel.title} sizes="(max-width: 768px) 100vw, 45vw" className="h-full w-full" caption={panel.caption} />
+                      {panel.id === "incineration-pipeline" ? <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_82%,rgba(222,114,66,0.3),transparent_46%),linear-gradient(to_top,rgba(11,8,7,0.78),rgba(11,8,7,0.22))]" /> : null}
+                      {panel.id === "microfiber-saturation" ? (
+                        <div className="absolute inset-0">
+                          {microfiberParticles.map((particle, microIdx) => (
+                            <motion.span
+                              key={`micro-${microIdx}`}
+                              className="absolute h-1.5 w-1.5 rounded-full bg-[#d3deeb]/70"
+                              style={{ left: particle.left, top: particle.top }}
+                              animate={{ y: [0, -14, 0], opacity: [0.2, 0.78, 0.2] }}
+                              transition={{ duration: particle.duration, repeat: Number.POSITIVE_INFINITY, delay: particle.delay, ease: "easeInOut" }}
+                            />
+                          ))}
+                          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_60%,rgba(152,193,216,0.2),transparent_48%)]" />
+                        </div>
+                      ) : null}
+                    </div>
+                    <div className="p-6 sm:p-7">
+                      <div className="inline-flex items-center gap-2 rounded-full border border-[#6b6057]/55 px-3 py-1 text-[10px] uppercase tracking-[0.14em] text-[#a69888]">
+                        <StoryIcon kind={panel.icon} />
+                        {panel.kicker}
+                      </div>
+                      <h3 className="mt-4 font-[var(--font-display)] text-[1.35rem] leading-tight text-[#ddd2c2]">{panel.title}</h3>
+                      <div className="mt-4 space-y-3 text-sm leading-relaxed text-[#b2a596]">
+                        {panel.notes.map((note) => (
+                          <p key={note}>{note}</p>
+                        ))}
+                      </div>
+                      <p className={`mt-5 border-l pl-3 text-xs leading-relaxed ${panel.id === "no-neutral-choice" ? "border-[#bf8f5a] text-[#d8be99]" : "border-[#6b6057]/55 text-[#9d9080]"}`}>
+                        {panel.evidence}
+                      </p>
+                      {index === 0 ? (
+                        <div className="mt-4 flex flex-wrap gap-2 text-[10px] uppercase tracking-[0.13em] text-[#a49788]">
+                          <span className="rounded-full border border-[#6b6057]/55 px-2 py-1">Europe → West Africa</span>
+                          <span className="rounded-full border border-[#6b6057]/55 px-2 py-1">North America → Chile</span>
+                        </div>
+                      ) : null}
+                    </div>
+                  </div>
+                </motion.article>
+              ))}
             </div>
           </div>
         </div>
