@@ -115,7 +115,8 @@ button:focus-visible {
   text-wrap: balance;
   color: #e8dfd2;
   letter-spacing: -0.01em;
-  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-size: clamp(1.65rem, 3.2vw, 2.75rem);
+  line-height: 1.16;
 }
 
 .exhibit-heading {
@@ -124,7 +125,8 @@ button:focus-visible {
   text-wrap: balance;
   color: #e8dfd2;
   letter-spacing: -0.01em;
-  font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+  font-size: clamp(1.3rem, 2.4vw, 2rem);
+  line-height: 1.2;
 }
 
 /* Image Container Styles */
