@@ -26,7 +26,8 @@ If you are new to the repository, read these in order:
 1. [docs/foundation/orchestration-workflow.md](docs/foundation/orchestration-workflow.md)
 2. [docs/foundation/prompting-playbook.md](docs/foundation/prompting-playbook.md)
 3. [docs/_specs/README.md](docs/_specs/README.md)
-4. [docs/_specs/thread-trace-foundation/spec.md](docs/_specs/thread-trace-foundation/spec.md)
+4. [.github/copilot-instructions.md](.github/copilot-instructions.md)
+5. [docs/_specs/thread-trace-foundation/spec.md](docs/_specs/thread-trace-foundation/spec.md)
 
 ## Museum Narrative Route
 
@@ -44,6 +45,35 @@ If you are new to the repository, read these in order:
 
 Detailed design rules are in [docs/design-system.md](docs/design-system.md).
 
+## Repository Structure
+
+```text
+.
+├── .github/
+│   ├── copilot-instructions.md
+│   └── workflows/
+├── app/
+├── components/
+│   └── site/
+├── data/
+├── docs/
+│   ├── foundation/
+│   ├── _specs/
+│   └── _archive/
+├── lib/
+├── next.config.mjs
+├── package.json
+└── tailwind.config.ts
+```
+
+## Artifact Model
+
+- `README.md` as the repository entry layer
+- `docs/foundation/` for stable process guidance
+- `docs/_specs/` for active workstreams
+- `docs/_archive/` for retired or completed workstreams
+- `.github/copilot-instructions.md` for repo-level AI operating rules
+
 ## Process Model
 
 For substantial work, use:
@@ -56,25 +86,6 @@ For substantial work, use:
 6. QA implementation against scope and verification steps.
 
 This sequence is documented in [docs/foundation/orchestration-workflow.md](docs/foundation/orchestration-workflow.md).
-
-## Repository Structure
-
-```text
-.
-├── .github/
-│   └── workflows/
-├── app/
-├── components/
-│   └── site/
-├── data/
-├── docs/
-│   ├── foundation/
-│   └── _specs/
-├── lib/
-├── next.config.mjs
-├── package.json
-└── tailwind.config.ts
-```
 
 ## Development
 

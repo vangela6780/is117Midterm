@@ -2,6 +2,8 @@
 
 This directory stores active specifications, sprint docs, and QA artifacts for this project.
 
+Completed or retired workstreams move to `docs/_archive/`.
+
 ## Standard Layout
 
 ```text
