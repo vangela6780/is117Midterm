@@ -116,7 +116,7 @@ GitHub Pages deployment is configured via:
 
 Deployment target:
 
-- https://vangela6780.github.io/is117Midterm/
+- https://vangela6780.github.io/museum-site/
 
 ## Active Workstream
 
